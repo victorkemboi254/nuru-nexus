@@ -10,6 +10,7 @@ function Header({ companies, activeCompany, onCompanySelect }) {
 
         <nav className="header__nav" aria-label="Main navigation">
           <a href="#about">About us</a>
+          <a href="#leadership">Leadership</a>
 
           <div className="header__dropdown">
             <button type="button" className="header__dropdown-toggle">

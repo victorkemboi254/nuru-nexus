@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
+import Leadership from './components/Leadership'
 import Subsidiaries from './components/Subsidiaries'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -59,6 +60,7 @@ function App() {
       <main>
         <Hero />
         <About />
+        <Leadership />
         <Subsidiaries
           companies={companies}
           activeCompany={activeCompany}
