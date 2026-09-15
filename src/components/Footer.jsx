@@ -2,7 +2,7 @@ import queenMark from '../assets/nuru-queen-mark.png'
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" color='Black'>
       <div className="footer__inner">
         <div className="footer__brand">
           <img src={queenMark} alt="" className="footer__mark-icon" />

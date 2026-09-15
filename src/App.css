@@ -684,6 +684,8 @@ button {
     margin-top: auto;
     border-top: 1px solid var(--line);
     padding: 48px 24px;
+    background: #0b0b0b;
+    color: #f3f3f3;
 }
 
 .footer__inner {
@@ -693,6 +695,7 @@ button {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 24px;
+    /* text-decoration: #f7f5f5; */
 }
 
 .footer__brand {
@@ -712,10 +715,11 @@ button {
     font-size: 1.1rem;
     font-weight: 700;
     display: block;
+    color: #f3f3f3;
 }
 
 .footer__inner p {
-    color: var(--slate);
+    color: #c8c8c8;
     margin: 6px 0 0;
     font-size: 0.9rem;
 }
@@ -725,6 +729,7 @@ button {
 }
 
 .footer__contact a {
+    color: #f3f3f3;
     text-decoration: none;
 }
 
