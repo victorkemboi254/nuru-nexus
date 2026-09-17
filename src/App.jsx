@@ -11,27 +11,60 @@ import './App.css'
 const companies = [
   {
     name: 'Dltoo',
-    line: 'Provides legal services.',
+    tabLabel: 'DLTOO',
+    sector: 'LEGAL SERVICES',
+    headline: 'Advancing Legal Excellence & Corporate Advisory',
+    description:
+      "Kenya's premier legal practice delivering strategic corporate counsel, commercial dispute litigation, real estate conveyance, and regulatory advisory for modern enterprises.",
+    line: 'Provides legal and corporate advisory services.',
     detail:
-      'This is a legal firm in Kenya that provides legal representation and advisory services.',
+      'A leading legal firm in Kenya that provides specialized corporate legal representation, commercial dispute resolution, compliance, and strategic advisory services.',
+    image: '/dltoo.jpeg',
+    website: 'https://dltooadvocates.org',
+    ctaText: 'EXPLORE DLTOO',
   },
   {
     name: 'Silda',
+    tabLabel: 'SILDA',
+    sector: 'EDUTECH & INFRASTRUCTURE',
+    headline: 'Empowering Knowledge Through Digital Infrastructure',
+    description:
+      'Specialized EduTech delivering remote-access platforms like MyLOFT and RemoteXs, RFID library automation, and research solutions for universities and institutions across Africa.',
     line: 'IT services and consulting company based in Nairobi.',
     detail:
-      'Specializes in consultancy-based software development and digital infrastructure. They provide specialized tools like Library Management Systems (such as MyLOFT and RemoteXs).',
+      'Specializes in consultancy-based software development, RFID library automation, remote knowledge platforms (such as MyLOFT and RemoteXs), and digital academic infrastructure.',
+    image: '/silda.jpg',
+    website: 'https://silda.co.ke',
+    ctaText: 'EXPLORE SILDA',
   },
   {
     name: 'Jemnet',
-    line: 'Licenced Internet Service Provider (ISP) and ICT solutions company.',
+    tabLabel: 'JEMNET',
+    sector: 'CONNECTIVITY & ICT',
+    headline: 'Connecting Communities With Next-Gen Fiber',
+    description:
+      'Licensed Internet Service Provider delivering high-speed dedicated enterprise fiber, home broadband, CCTV surveillance, biometric access, and turnkey ICT solutions.',
+    line: 'Licensed Internet Service Provider (ISP) and ICT solutions company.',
     detail:
-      'Offers home and business fiber internet packages, CCTV installation, biometric access control, PBX systems, and web design.',
+      'Offers high-capacity dedicated fiber internet, structured cabling, smart security installations, PBX telephony, biometric access control, and modern web solutions.',
+    image: '/jemnet.jpeg',
+    website: 'https://jemnet.co.ke',
+    ctaText: 'EXPLORE JEMNET',
   },
   {
-  name: 'Pentapath',
-  line: 'technology company that develops software and digital solutions to help businesses and organizations improve their operations through modern technology.',
-  detail: 'Pentapath Group is a Kenyan technology company based in Nairobi that focuses on software development, digital solutions, and technology services. The company works on areas such as web and mobile applications, backend systems, cloud technologies, and financial technology solutions.'
-  }
+    name: 'Pentapath',
+    tabLabel: 'PENTAPATH',
+    sector: 'SOFTWARE & RFID SYSTEMS',
+    headline: 'Architecting Digital Solutions & Intelligent Automation',
+    description:
+      'Kenyan technology firm developing bespoke software architectures, advanced RFID tracking systems, biometric security gates, and cloud fintech solutions.',
+    line: 'Technology company that develops software, RFID systems, and digital solutions.',
+    detail:
+      'Pentapath Group is a Kenyan technology company focusing on bespoke software engineering, RFID hardware integration, turnstile and access automation, and scalable digital architectures.',
+    image: '/pentapath.jpeg',
+    website: 'https://pentapath.co.ke',
+    ctaText: 'EXPLORE PENTAPATH',
+  },
 ]
 
 function App() {
@@ -58,7 +91,7 @@ function App() {
         onCompanySelect={handleCompanySelect}
       />
       <main>
-        <Hero />
+        <Hero companies={companies} />
         <About />
         <Leadership />
         <Subsidiaries

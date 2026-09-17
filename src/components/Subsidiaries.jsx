@@ -34,6 +34,21 @@ function Subsidiaries({ companies, activeCompany, onCompanySelect }) {
             <h3>{selectedCompany.name}</h3>
             <p className="subs__line">{selectedCompany.line}</p>
             <p className="subs__detail">{selectedCompany.detail}</p>
+            {selectedCompany.website && (
+              <a
+                href={selectedCompany.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="subs__website-btn"
+              >
+                <span>Visit {selectedCompany.name} Website</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            )}
           </div>
         </div>
       </div>
