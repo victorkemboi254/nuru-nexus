@@ -1,9 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import logo from '../assets/nuru-logo.png'
 
-function Header({ companies = [], activeCompany, onCompanySelect }) {
+function Header({
+  companies = [],
+  activeCompany,
+  onCompanySelect,
+  currentPage = 'home',
+  onNavigate,
+}) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
+  const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false)
+
+  const aboutTimerRef = useRef(null)
+  const portfolioTimerRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,16 +24,59 @@ function Header({ companies = [], activeCompany, onCompanySelect }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close menus on outside click or escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setAboutDropdownOpen(false)
+        setPortfolioDropdownOpen(false)
+        setMobileMenuOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  const handleNavClick = (page) => {
+    setMobileMenuOpen(false)
+    setAboutDropdownOpen(false)
+    setPortfolioDropdownOpen(false)
+    if (onNavigate) {
+      onNavigate(page)
+    }
+  }
+
+  const handleCompanyClick = (index) => {
+    setMobileMenuOpen(false)
+    setAboutDropdownOpen(false)
+    setPortfolioDropdownOpen(false)
+    if (onCompanySelect) {
+      onCompanySelect(index)
+    }
+  }
+
+  const isAboutActive = [
+    'company-profile',
+    'our-history',
+    'executive-team',
+    'board-of-directors',
+  ].includes(currentPage)
+
   return (
-    <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
+    <header className={`header ${isScrolled || currentPage !== 'home' ? 'header--scrolled' : ''}`}>
       <div className="header__inner">
         {/* Left: Brand Logo */}
         <div className="header__left">
-          <a href="#top" className="header__brand" aria-label="Nuru Nexus home">
+          <button
+            type="button"
+            className="header__brand-btn"
+            onClick={() => handleNavClick('home')}
+            aria-label="Nuru Nexus Home"
+          >
             <div className="header__logo-wrap">
               <img src={logo} alt="Nuru Nexus Holding Ltd" className="header__logo" />
             </div>
-          </a>
+          </button>
         </div>
 
         {/* Center: Navigation Links */}
@@ -30,35 +84,36 @@ function Header({ companies = [], activeCompany, onCompanySelect }) {
           className={`header__nav ${mobileMenuOpen ? 'header__nav--open' : ''}`}
           aria-label="Main navigation"
         >
-          <a
-            href="#top"
-            className="header__nav-link"
-            onClick={() => setMobileMenuOpen(false)}
+          {/* Home */}
+          <button
+            type="button"
+            className={`header__nav-link ${currentPage === 'home' ? 'header__nav-link--active' : ''}`}
+            onClick={() => handleNavClick('home')}
           >
             Home
-          </a>
-          <a
-            href="#about"
-            className="header__nav-link"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            About Us
-          </a>
-          <a
-            href="#leadership"
-            className="header__nav-link"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Leadership
-          </a>
+          </button>
 
-          <div className="header__dropdown">
+          {/* About Us Dropdown */}
+          <div
+            className={`header__dropdown ${aboutDropdownOpen ? 'header__dropdown--open' : ''}`}
+            onMouseEnter={() => {
+              if (aboutTimerRef.current) clearTimeout(aboutTimerRef.current)
+              setAboutDropdownOpen(true)
+            }}
+            onMouseLeave={() => {
+              aboutTimerRef.current = setTimeout(() => {
+                setAboutDropdownOpen(false)
+              }, 120)
+            }}
+          >
             <button
               type="button"
-              className="header__dropdown-toggle"
+              className={`header__dropdown-toggle ${isAboutActive ? 'header__nav-link--active' : ''}`}
               aria-haspopup="true"
+              aria-expanded={aboutDropdownOpen}
+              onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
             >
-              <span>Companies</span>
+              <span>About Us</span>
               <svg
                 className="header__dropdown-chevron"
                 width="12"
@@ -72,39 +127,128 @@ function Header({ companies = [], activeCompany, onCompanySelect }) {
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
-            <div className="header__dropdown-menu" role="menu" aria-label="Company menu">
+
+            <div
+              className={`header__dropdown-menu ${aboutDropdownOpen ? 'header__dropdown-menu--visible' : ''}`}
+              role="menu"
+              aria-label="About Us submenu"
+            >
+              <button
+                type="button"
+                role="menuitem"
+                className={`header__dropdown-item ${
+                  currentPage === 'company-profile' ? 'header__dropdown-item--active' : ''
+                }`}
+                onClick={() => handleNavClick('company-profile')}
+              >
+                <span className="header__dropdown-num">01</span>
+                <span className="header__dropdown-name">Company Profile</span>
+              </button>
+
+              <button
+                type="button"
+                role="menuitem"
+                className={`header__dropdown-item ${
+                  currentPage === 'our-history' ? 'header__dropdown-item--active' : ''
+                }`}
+                onClick={() => handleNavClick('our-history')}
+              >
+                <span className="header__dropdown-num">02</span>
+                <span className="header__dropdown-name">Our History</span>
+              </button>
+
+              <button
+                type="button"
+                role="menuitem"
+                className={`header__dropdown-item ${
+                  currentPage === 'executive-team' ? 'header__dropdown-item--active' : ''
+                }`}
+                onClick={() => handleNavClick('executive-team')}
+              >
+                <span className="header__dropdown-num">03</span>
+                <span className="header__dropdown-name">Executive Team</span>
+              </button>
+
+              <button
+                type="button"
+                role="menuitem"
+                className={`header__dropdown-item ${
+                  currentPage === 'board-of-directors' ? 'header__dropdown-item--active' : ''
+                }`}
+                onClick={() => handleNavClick('board-of-directors')}
+              >
+                <span className="header__dropdown-num">04</span>
+                <span className="header__dropdown-name">Board of Directors</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Portfolio Dropdown (formerly Companies) */}
+          <div
+            className={`header__dropdown ${portfolioDropdownOpen ? 'header__dropdown--open' : ''}`}
+            onMouseEnter={() => {
+              if (portfolioTimerRef.current) clearTimeout(portfolioTimerRef.current)
+              setPortfolioDropdownOpen(true)
+            }}
+            onMouseLeave={() => {
+              portfolioTimerRef.current = setTimeout(() => {
+                setPortfolioDropdownOpen(false)
+              }, 120)
+            }}
+          >
+            <button
+              type="button"
+              className="header__dropdown-toggle"
+              aria-haspopup="true"
+              aria-expanded={portfolioDropdownOpen}
+              onClick={() => setPortfolioDropdownOpen(!portfolioDropdownOpen)}
+            >
+              <span>Portfolio</span>
+              <svg
+                className="header__dropdown-chevron"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div
+              className={`header__dropdown-menu ${portfolioDropdownOpen ? 'header__dropdown-menu--visible' : ''}`}
+              role="menu"
+              aria-label="Portfolio companies menu"
+            >
               {companies.map((company, index) => (
                 <button
                   key={company.name}
                   type="button"
                   role="menuitem"
                   className={`header__dropdown-item ${
-                    index === activeCompany ? 'header__dropdown-item--active' : ''
+                    currentPage === 'home' && index === activeCompany
+                      ? 'header__dropdown-item--active'
+                      : ''
                   }`}
-                  onClick={() => {
-                    onCompanySelect(index)
-                    setMobileMenuOpen(false)
-                  }}
+                  onClick={() => handleCompanyClick(index)}
                 >
                   <span className="header__dropdown-num">0{index + 1}</span>
-                  <div className="header__dropdown-info">
-                    <span className="header__dropdown-name">{company.name}</span>
-                    <span className="header__dropdown-sector">
-                      {company.sector || company.line}
-                    </span>
-                  </div>
+                  <span className="header__dropdown-name">{company.name}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          <a
-            href="#contact"
-            className="header__nav-link"
-            onClick={() => setMobileMenuOpen(false)}
+          {/* Contact Nav Link */}
+          <button
+            type="button"
+            className={`header__nav-link ${currentPage === 'contact' ? 'header__nav-link--active' : ''}`}
+            onClick={() => handleNavClick('contact')}
           >
             Contact
-          </a>
+          </button>
         </nav>
 
         {/* Right: Phone Number & Contact Us CTA */}
@@ -131,9 +275,13 @@ function Header({ companies = [], activeCompany, onCompanySelect }) {
             <span className="header__phone-num">+254 709 622 000</span>
           </a>
 
-          <a href="#contact" className="header__contact-btn">
+          <button
+            type="button"
+            className="header__contact-btn"
+            onClick={() => handleNavClick('contact')}
+          >
             <span>Contact Us</span>
-          </a>
+          </button>
 
           {/* Mobile Menu Toggle Button */}
           <button

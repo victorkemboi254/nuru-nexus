@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
 import Leadership from './components/Leadership'
 import Subsidiaries from './components/Subsidiaries'
-import Contact from './components/Contact'
+import HomeContactCta from './components/HomeContactCta'
 import Footer from './components/Footer'
+
+// Dedicated Subpages
+import CompanyProfile from './components/pages/CompanyProfile'
+import OurHistory from './components/pages/OurHistory'
+import ExecutiveTeam from './components/pages/ExecutiveTeam'
+import BoardOfDirectors from './components/pages/BoardOfDirectors'
+import ContactPage from './components/pages/ContactPage'
+
 import './App.css'
 
 const companies = [
@@ -67,11 +75,50 @@ const companies = [
   },
 ]
 
+const VALID_PAGES = [
+  'home',
+  'company-profile',
+  'our-history',
+  'executive-team',
+  'board-of-directors',
+  'contact',
+]
+
 function App() {
+  const [currentPage, setCurrentPage] = useState(() => {
+    const hash = window.location.hash.replace('#', '')
+    return VALID_PAGES.includes(hash) ? hash : 'home'
+  })
   const [activeCompany, setActiveCompany] = useState(0)
+
+  // Listen to browser hash changes (back / forward navigation)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '')
+      if (VALID_PAGES.includes(hash)) {
+        setCurrentPage(hash)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else if (!hash || hash === 'top' || hash === 'subsidiaries' || hash === 'about' || hash === 'leadership') {
+        setCurrentPage('home')
+      }
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page)
+    window.location.hash = page === 'home' ? '' : page
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const handleCompanySelect = (index) => {
     setActiveCompany(index)
+
+    if (currentPage !== 'home') {
+      setCurrentPage('home')
+      window.location.hash = ''
+    }
 
     window.setTimeout(() => {
       const section = document.getElementById('subsidiaries')
@@ -80,7 +127,7 @@ function App() {
       document
         .getElementById(`company-tab-${index}`)
         ?.focus({ preventScroll: true })
-    }, 50)
+    }, 100)
   }
 
   return (
@@ -89,19 +136,47 @@ function App() {
         companies={companies}
         activeCompany={activeCompany}
         onCompanySelect={handleCompanySelect}
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
       />
+
       <main>
-        <Hero companies={companies} />
-        <About />
-        <Leadership />
-        <Subsidiaries
-          companies={companies}
-          activeCompany={activeCompany}
-          onCompanySelect={handleCompanySelect}
-        />
-        <Contact />
+        {currentPage === 'home' && (
+          <>
+            <Hero companies={companies} />
+            <About />
+            <Leadership onNavigate={handleNavigate} />
+            <Subsidiaries
+              companies={companies}
+              activeCompany={activeCompany}
+              onCompanySelect={handleCompanySelect}
+            />
+            <HomeContactCta onNavigate={handleNavigate} />
+          </>
+        )}
+
+        {currentPage === 'company-profile' && (
+          <CompanyProfile onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === 'our-history' && (
+          <OurHistory onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === 'executive-team' && (
+          <ExecutiveTeam onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === 'board-of-directors' && (
+          <BoardOfDirectors onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === 'contact' && (
+          <ContactPage />
+        )}
       </main>
-      <Footer />
+
+      <Footer onNavigate={handleNavigate} />
     </div>
   )
 }
