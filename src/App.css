@@ -740,52 +740,268 @@ button {
 }
 
 
-/* ---------- About ---------- */
+/* ---------- Enhanced About ("What Holds Us Together") - Luminous White Canvas ---------- */
 
 .about {
-    max-width: 1120px;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    padding: clamp(80px, 9vw, 116px) 24px;
+    color: #111827;
+    position: relative;
+}
+
+.about__container {
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 100px 24px;
+}
+
+.about__header {
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 64px;
+    grid-template-columns: 1fr 1.25fr;
+    gap: clamp(36px, 5vw, 64px);
+    align-items: start;
+    margin-bottom: clamp(52px, 7vw, 72px);
 }
 
-.about__intro h2 {
+.about__header:has(.about__header-right:empty) {
+    display: block;
+    max-width: 780px;
+    margin-bottom: clamp(36px, 5vw, 48px);
+}
+
+.about__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--red);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.about__title {
     font-family: var(--serif-font);
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.about__intro p {
-    color: var(--slate);
-    line-height: 1.6;
-    max-width: 34ch;
-}
-
-.about__values {
-    list-style: none;
+    font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+    line-height: 1.05;
+    color: #0f172a;
+    letter-spacing: -0.015em;
     margin: 0;
-    padding: 0;
+}
+
+.about__lead {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: #1f2937;
+    margin: 0 0 16px;
+}
+
+.about__lead strong {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.about__sublead {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* 3 Core Value Cards Grid */
+.about__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: clamp(48px, 6vw, 64px);
+}
+
+.about-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 34px 28px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-card:hover {
+    border-color: rgba(216, 32, 44, 0.45);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(216, 32, 44, 0.09), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.about-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.about-card__icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: rgba(216, 32, 44, 0.08);
+    border: 1px solid rgba(216, 32, 44, 0.22);
+    color: var(--red);
+    display: grid;
+    place-items: center;
+    transition: transform 0.24s ease, background 0.24s ease, color 0.24s ease;
+}
+
+.about-card:hover .about-card__icon-box {
+    background: var(--red);
+    color: #ffffff;
+    transform: scale(1.06);
+}
+
+.about-card__num {
+    font-family: var(--mono);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #94a3b8;
+}
+
+.about-card__title {
+    font-family: var(--serif-font);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+
+.about-card__subtitle {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin: 0 0 14px;
+}
+
+.about-card__text {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #4b5563;
+    margin: 0;
+}
+
+/* Strategic Holding Banner */
+.about-banner {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: clamp(28px, 4vw, 36px) clamp(28px, 4vw, 44px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 32px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
 }
 
-.about__value {
-    border-top: 1px solid var(--line);
-    padding-top: 20px;
+.about-banner::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--red);
 }
 
-.about__value h3 {
-    font-size: 1.25rem;
+.about-banner__content {
+    max-width: 680px;
+}
+
+.about-banner__tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
     margin-bottom: 8px;
 }
 
-.about__value p {
-    color: var(--slate);
-    line-height: 1.6;
+.about-banner__quote {
+    font-family: var(--serif-font);
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.55;
+    color: #0f172a;
     margin: 0;
+    font-style: italic;
+}
+
+.about-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.about-banner__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 7px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.about-banner__btn--primary {
+    background: var(--red);
+    border: 1px solid var(--red);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(216, 32, 44, 0.25);
+}
+
+.about-banner__btn--primary:hover {
+    background: var(--red-hover, #b21522);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(216, 32, 44, 0.4);
+}
+
+.about-banner__btn--secondary {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.about-banner__btn--secondary:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-color: #94a3b8;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 960px) {
+    .about__header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .about__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .about-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 
@@ -2708,5 +2924,454 @@ button {
     .board-grid,
     .governance-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Portfolio Page Styles (Unique Luminous White Showcase with Red Theme Accents)
+   ========================================================================== */
+
+.portfolio-page {
+    background: #0a0c10;
+}
+
+.portfolio-hero {
+    background: radial-gradient(circle at 50% 20%, #171c26 0%, #0a0c10 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Main Luminous White Showcase */
+.portfolio-showcase {
+    background: #ffffff;
+    color: #111827;
+    padding: clamp(60px, 8vw, 100px) 24px clamp(72px, 9vw, 110px);
+    position: relative;
+}
+
+.portfolio-showcase__container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.portfolio-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 6vw, 72px);
+}
+
+.portfolio-row {
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    gap: clamp(36px, 5vw, 64px);
+    align-items: center;
+    padding-bottom: clamp(48px, 6vw, 72px);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.portfolio-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Media Thumbnail Container */
+.portfolio-row__media {
+    position: relative;
+}
+
+.portfolio-row__img-wrap {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+    background: #f1f5f9;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+.portfolio-row__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-row:hover .portfolio-row__img {
+    transform: scale(1.04);
+}
+
+.portfolio-row__img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25) 100%);
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* Content Area */
+.portfolio-row__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.portfolio-row__tag {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--accent-font);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+}
+
+.portfolio-row__title {
+    font-family: var(--serif-font);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+    margin: 0 0 14px;
+    letter-spacing: -0.015em;
+}
+
+.portfolio-row__desc {
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: #4b5563;
+    margin: 0 0 20px;
+}
+
+.portfolio-row__capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.portfolio-row__cap-pill {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #374151;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.portfolio-row__cap-pill:hover {
+    color: var(--red);
+    border-color: rgba(216, 32, 44, 0.4);
+    background: rgba(216, 32, 44, 0.04);
+}
+
+.portfolio-row__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.portfolio-row__visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(216, 32, 44, 0.28);
+    transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-row__visit-btn:hover {
+    background: var(--red-hover, #b21522);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(216, 32, 44, 0.45);
+}
+
+.portfolio-row__visit-btn svg {
+    transition: transform 0.22s ease;
+}
+
+.portfolio-row__visit-btn:hover svg {
+    transform: translate(2px, -2px);
+}
+
+.portfolio-row__motto-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2;
+    transition: transform 0.24s ease;
+}
+
+.portfolio-row:hover .portfolio-row__motto-badge {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Company-Specific Themes (Derived from Screenshots)
+   ========================================================================== */
+
+/* 1. DLTOO Advocates - Regal Legal Gold Theme */
+.portfolio-row--dltoo .portfolio-row__tag {
+    color: #b8861b;
+}
+
+.portfolio-row--dltoo .portfolio-row__cap-pill {
+    background: #fefce8;
+    border-color: #fef08a;
+    color: #854d0e;
+}
+
+.portfolio-row--dltoo .portfolio-row__cap-pill:hover {
+    background: #fef9c3;
+    border-color: #facc15;
+    color: #713f12;
+}
+
+.portfolio-row--dltoo .portfolio-row__visit-btn {
+    background: linear-gradient(135deg, #dfb135 0%, #b8861b 100%);
+    box-shadow: 0 4px 16px rgba(217, 151, 27, 0.35);
+}
+
+.portfolio-row--dltoo .portfolio-row__visit-btn:hover {
+    background: linear-gradient(135deg, #c89628 0%, #996d13 100%);
+    box-shadow: 0 8px 24px rgba(217, 151, 27, 0.5);
+    color: #ffffff;
+}
+
+.portfolio-row--dltoo .portfolio-row__motto-badge {
+    background: rgba(22, 18, 8, 0.88);
+    color: #fef08a;
+    border: 1px solid rgba(223, 177, 53, 0.45);
+}
+
+.portfolio-row--dltoo:hover .portfolio-row__img-wrap {
+    border-color: rgba(223, 177, 53, 0.5);
+    box-shadow: 0 16px 36px -10px rgba(217, 151, 27, 0.25);
+}
+
+/* 2. SILDA Enterprise - Digital Education Ocean Cyan Theme */
+.portfolio-row--silda .portfolio-row__tag {
+    color: #0284c7;
+}
+
+.portfolio-row--silda .portfolio-row__cap-pill {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+    color: #0369a1;
+}
+
+.portfolio-row--silda .portfolio-row__cap-pill:hover {
+    background: #e0f2fe;
+    border-color: #7dd3fc;
+    color: #075985;
+}
+
+.portfolio-row--silda .portfolio-row__visit-btn {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35);
+}
+
+.portfolio-row--silda .portfolio-row__visit-btn:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.5);
+    color: #ffffff;
+}
+
+.portfolio-row--silda .portfolio-row__motto-badge {
+    background: rgba(8, 24, 40, 0.88);
+    color: #bae6fd;
+    border: 1px solid rgba(14, 165, 233, 0.45);
+}
+
+.portfolio-row--silda:hover .portfolio-row__img-wrap {
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: 0 16px 36px -10px rgba(14, 165, 233, 0.25);
+}
+
+/* 3. JEMNET Telecom - Royal Violet & Electric Purple Theme */
+.portfolio-row--jemnet .portfolio-row__tag {
+    color: #7c3aed;
+}
+
+.portfolio-row--jemnet .portfolio-row__cap-pill {
+    background: #f5f3ff;
+    border-color: #ddd6fe;
+    color: #5b21b6;
+}
+
+.portfolio-row--jemnet .portfolio-row__cap-pill:hover {
+    background: #ede9fe;
+    border-color: #c4b5fd;
+    color: #4c1d95;
+}
+
+.portfolio-row--jemnet .portfolio-row__visit-btn {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+}
+
+.portfolio-row--jemnet .portfolio-row__visit-btn:hover {
+    background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+    color: #ffffff;
+}
+
+.portfolio-row--jemnet .portfolio-row__motto-badge {
+    background: rgba(22, 12, 42, 0.88);
+    color: #ddd6fe;
+    border: 1px solid rgba(124, 58, 237, 0.45);
+}
+
+.portfolio-row--jemnet:hover .portfolio-row__img-wrap {
+    border-color: rgba(124, 58, 237, 0.5);
+    box-shadow: 0 16px 36px -10px rgba(124, 58, 237, 0.25);
+}
+
+/* 4. PENTAPATH Systems - Tech Navy & Crimson Red Theme */
+.portfolio-row--pentapath .portfolio-row__tag {
+    color: #dc2626;
+}
+
+.portfolio-row--pentapath .portfolio-row__cap-pill {
+    background: #fff1f2;
+    border-color: #fecdd3;
+    color: #9f1239;
+}
+
+.portfolio-row--pentapath .portfolio-row__cap-pill:hover {
+    background: #ffe4e6;
+    border-color: #fda4af;
+    color: #881337;
+}
+
+.portfolio-row--pentapath .portfolio-row__visit-btn {
+    background: linear-gradient(135deg, #1e293b 0%, #dc2626 100%);
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+}
+
+.portfolio-row--pentapath .portfolio-row__visit-btn:hover {
+    background: linear-gradient(135deg, #0f172a 0%, #b91c1c 100%);
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.5);
+    color: #ffffff;
+}
+
+.portfolio-row--pentapath .portfolio-row__motto-badge {
+    background: rgba(24, 10, 14, 0.88);
+    color: #fecdd3;
+    border: 1px solid rgba(220, 38, 38, 0.45);
+}
+
+.portfolio-row--pentapath:hover .portfolio-row__img-wrap {
+    border-color: rgba(220, 38, 38, 0.5);
+    box-shadow: 0 16px 36px -10px rgba(220, 38, 38, 0.25);
+}
+
+/* Bottom Partnership Callout */
+.portfolio-callout {
+    margin-top: clamp(60px, 8vw, 84px);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: clamp(32px, 5vw, 44px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.portfolio-callout__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    flex-wrap: wrap;
+}
+
+.portfolio-callout__content {
+    max-width: 680px;
+}
+
+.portfolio-callout__tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+}
+
+.portfolio-callout__content h3 {
+    font-family: var(--serif-font);
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+    color: #0f172a;
+    margin: 0 0 10px;
+}
+
+.portfolio-callout__content p {
+    color: #64748b;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.portfolio-callout__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f172a;
+    color: #ffffff;
+    border: 0;
+    padding: 13px 26px;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-callout__btn:hover {
+    background: var(--red);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(216, 32, 44, 0.35);
+}
+
+.portfolio-callout__btn svg {
+    transition: transform 0.22s ease;
+}
+
+.portfolio-callout__btn:hover svg {
+    transform: translateX(3px);
+}
+
+@media (max-width: 960px) {
+    .portfolio-row {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .portfolio-row__img-wrap {
+        height: 260px;
+    }
+    .portfolio-callout__inner {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

@@ -11,10 +11,8 @@ function Header({
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
-  const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false)
 
   const aboutTimerRef = useRef(null)
-  const portfolioTimerRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +27,6 @@ function Header({
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setAboutDropdownOpen(false)
-        setPortfolioDropdownOpen(false)
         setMobileMenuOpen(false)
       }
     }
@@ -40,18 +37,8 @@ function Header({
   const handleNavClick = (page) => {
     setMobileMenuOpen(false)
     setAboutDropdownOpen(false)
-    setPortfolioDropdownOpen(false)
     if (onNavigate) {
       onNavigate(page)
-    }
-  }
-
-  const handleCompanyClick = (index) => {
-    setMobileMenuOpen(false)
-    setAboutDropdownOpen(false)
-    setPortfolioDropdownOpen(false)
-    if (onCompanySelect) {
-      onCompanySelect(index)
     }
   }
 
@@ -141,7 +128,6 @@ function Header({
                 }`}
                 onClick={() => handleNavClick('company-profile')}
               >
-                <span className="header__dropdown-num">01</span>
                 <span className="header__dropdown-name">Company Profile</span>
               </button>
 
@@ -153,7 +139,6 @@ function Header({
                 }`}
                 onClick={() => handleNavClick('our-history')}
               >
-                <span className="header__dropdown-num">02</span>
                 <span className="header__dropdown-name">Our History</span>
               </button>
 
@@ -165,7 +150,6 @@ function Header({
                 }`}
                 onClick={() => handleNavClick('executive-team')}
               >
-                <span className="header__dropdown-num">03</span>
                 <span className="header__dropdown-name">Executive Team</span>
               </button>
 
@@ -177,69 +161,19 @@ function Header({
                 }`}
                 onClick={() => handleNavClick('board-of-directors')}
               >
-                <span className="header__dropdown-num">04</span>
                 <span className="header__dropdown-name">Board of Directors</span>
               </button>
             </div>
           </div>
 
-          {/* Portfolio Dropdown (formerly Companies) */}
-          <div
-            className={`header__dropdown ${portfolioDropdownOpen ? 'header__dropdown--open' : ''}`}
-            onMouseEnter={() => {
-              if (portfolioTimerRef.current) clearTimeout(portfolioTimerRef.current)
-              setPortfolioDropdownOpen(true)
-            }}
-            onMouseLeave={() => {
-              portfolioTimerRef.current = setTimeout(() => {
-                setPortfolioDropdownOpen(false)
-              }, 120)
-            }}
+          {/* Portfolio Nav Link */}
+          <button
+            type="button"
+            className={`header__nav-link ${currentPage === 'portfolio' ? 'header__nav-link--active' : ''}`}
+            onClick={() => handleNavClick('portfolio')}
           >
-            <button
-              type="button"
-              className="header__dropdown-toggle"
-              aria-haspopup="true"
-              aria-expanded={portfolioDropdownOpen}
-              onClick={() => setPortfolioDropdownOpen(!portfolioDropdownOpen)}
-            >
-              <span>Portfolio</span>
-              <svg
-                className="header__dropdown-chevron"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                aria-hidden="true"
-              >
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div
-              className={`header__dropdown-menu ${portfolioDropdownOpen ? 'header__dropdown-menu--visible' : ''}`}
-              role="menu"
-              aria-label="Portfolio companies menu"
-            >
-              {companies.map((company, index) => (
-                <button
-                  key={company.name}
-                  type="button"
-                  role="menuitem"
-                  className={`header__dropdown-item ${
-                    currentPage === 'home' && index === activeCompany
-                      ? 'header__dropdown-item--active'
-                      : ''
-                  }`}
-                  onClick={() => handleCompanyClick(index)}
-                >
-                  <span className="header__dropdown-num">0{index + 1}</span>
-                  <span className="header__dropdown-name">{company.name}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+            Portfolio
+          </button>
 
           {/* Contact Nav Link */}
           <button

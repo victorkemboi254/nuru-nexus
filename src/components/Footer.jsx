@@ -130,6 +130,11 @@ function Footer({ onNavigate }) {
                 </button>
               </li>
               <li>
+                <button type="button" onClick={() => handleNav('portfolio')}>
+                  Portfolio
+                </button>
+              </li>
+              <li>
                 <button type="button" onClick={() => handleNav('contact')}>
                   Contact Us
                 </button>
@@ -169,9 +174,9 @@ function Footer({ onNavigate }) {
           <p className="footer-dl__copy">
             &copy; {new Date().getFullYear()} Nuru Nexus Holding Ltd. All rights reserved.
           </p>
-          <p className="footer-dl__motto">
+          {/* <p className="footer-dl__motto">
             Your Strategic Partner in Growth
-          </p>
+          </p> */}
         </div>
       </div>
     </footer>

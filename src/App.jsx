@@ -3,7 +3,6 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
 import Leadership from './components/Leadership'
-import Subsidiaries from './components/Subsidiaries'
 import HomeContactCta from './components/HomeContactCta'
 import Footer from './components/Footer'
 
@@ -12,6 +11,7 @@ import CompanyProfile from './components/pages/CompanyProfile'
 import OurHistory from './components/pages/OurHistory'
 import ExecutiveTeam from './components/pages/ExecutiveTeam'
 import BoardOfDirectors from './components/pages/BoardOfDirectors'
+import PortfolioPage from './components/pages/PortfolioPage'
 import ContactPage from './components/pages/ContactPage'
 
 import './App.css'
@@ -81,6 +81,7 @@ const VALID_PAGES = [
   'our-history',
   'executive-team',
   'board-of-directors',
+  'portfolio',
   'contact',
 ]
 
@@ -89,7 +90,6 @@ function App() {
     const hash = window.location.hash.replace('#', '')
     return VALID_PAGES.includes(hash) ? hash : 'home'
   })
-  const [activeCompany, setActiveCompany] = useState(0)
 
   // Listen to browser hash changes (back / forward navigation)
   useEffect(() => {
@@ -98,7 +98,7 @@ function App() {
       if (VALID_PAGES.includes(hash)) {
         setCurrentPage(hash)
         window.scrollTo({ top: 0, behavior: 'smooth' })
-      } else if (!hash || hash === 'top' || hash === 'subsidiaries' || hash === 'about' || hash === 'leadership') {
+      } else if (!hash || hash === 'top' || hash === 'about' || hash === 'leadership') {
         setCurrentPage('home')
       }
     }
@@ -112,30 +112,10 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const handleCompanySelect = (index) => {
-    setActiveCompany(index)
-
-    if (currentPage !== 'home') {
-      setCurrentPage('home')
-      window.location.hash = ''
-    }
-
-    window.setTimeout(() => {
-      const section = document.getElementById('subsidiaries')
-      section?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
-      document
-        .getElementById(`company-tab-${index}`)
-        ?.focus({ preventScroll: true })
-    }, 100)
-  }
-
   return (
     <div className="site" id="top">
       <Header
         companies={companies}
-        activeCompany={activeCompany}
-        onCompanySelect={handleCompanySelect}
         currentPage={currentPage}
         onNavigate={handleNavigate}
       />
@@ -144,13 +124,8 @@ function App() {
         {currentPage === 'home' && (
           <>
             <Hero companies={companies} />
-            <About />
+            <About onNavigate={handleNavigate} />
             <Leadership onNavigate={handleNavigate} />
-            <Subsidiaries
-              companies={companies}
-              activeCompany={activeCompany}
-              onCompanySelect={handleCompanySelect}
-            />
             <HomeContactCta onNavigate={handleNavigate} />
           </>
         )}
@@ -169,6 +144,10 @@ function App() {
 
         {currentPage === 'board-of-directors' && (
           <BoardOfDirectors onNavigate={handleNavigate} />
+        )}
+
+        {currentPage === 'portfolio' && (
+          <PortfolioPage onNavigate={handleNavigate} />
         )}
 
         {currentPage === 'contact' && (
