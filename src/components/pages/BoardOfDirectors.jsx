@@ -2,6 +2,7 @@ function BoardOfDirectors({ onNavigate }) {
   const directors = [
     {
       initials: 'LN',
+      image: '',
       name: 'Leader Name',
       role: 'Chairman of the Board',
       designation: 'Independent Non-Executive Director',
@@ -11,6 +12,7 @@ function BoardOfDirectors({ onNavigate }) {
     },
     {
       initials: 'LN',
+      image: '',
       name: 'Leader Name',
       role: 'Chair of Audit & Risk Committee',
       designation: 'Independent Non-Executive Director',
@@ -20,6 +22,7 @@ function BoardOfDirectors({ onNavigate }) {
     },
     {
       initials: 'LN',
+      image: '',
       name: 'Leader Name',
       role: 'Chair of Technology & Strategy Committee',
       designation: 'Non-Executive Director',
@@ -29,6 +32,7 @@ function BoardOfDirectors({ onNavigate }) {
     },
     {
       initials: 'LN',
+      image: '',
       name: 'Leader Name',
       role: 'Managing Director & CEO',
       designation: 'Executive Director',
@@ -38,6 +42,7 @@ function BoardOfDirectors({ onNavigate }) {
     },
     {
       initials: 'LN',
+      image: '',
       name: 'Leader Name',
       role: 'Legal Counsel & Executive Director',
       designation: 'Executive Director',
@@ -100,8 +105,12 @@ function BoardOfDirectors({ onNavigate }) {
             {directors.map((director, idx) => (
               <article key={`director-${idx}`} className="board-card">
                 <div className="board-card__top">
-                  <div className="board-card__avatar" aria-label={`${director.name} avatar`}>
-                    <span>{director.initials}</span>
+                  <div className="board-card__avatar" aria-label={`${director.name} portrait`}>
+                    {director.image ? (
+                      <img src={director.image} alt={director.name} />
+                    ) : (
+                      <span>{director.initials}</span>
+                    )}
                   </div>
                   <div className="board-card__head-meta">
                     <span className="board-card__number">0{idx + 1}</span>
