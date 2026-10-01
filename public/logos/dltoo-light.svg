@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 380" fill="none" class="company-logo-svg company-logo--dltoo">
+  <!-- Top Law Pillar & Scale Emblem -->
+  <g fill="#C59239">
+    <rect x="228" y="24" width="64" height="6" rx="2" />
+    <rect x="220" y="34" width="80" height="7" rx="2.5" />
+    <rect x="257" y="41" width="6" height="96" rx="1.5" />
+    <!-- Mirrored oval scales/loops -->
+    <path d="M252 46 C 214 46, 214 132, 252 132 Z" fill="none" stroke="#C59239" stroke-width="5.5" />
+    <path d="M268 46 C 306 46, 306 132, 268 132 Z" fill="none" stroke="#C59239" stroke-width="5.5" />
+  </g>
+  
+  <!-- Main Title: D.L. in Gold, TOO in White/Black -->
+  <g font-family="'Newsreader', 'Playfair Display', Georgia, serif">
+    <!-- D.L. -->
+    <text x="96" y="238" font-size="94" font-weight="600" fill="#C59239">
+      D.L.
+    </text>
+    
+    <!-- Flourish swoosh curve under D.L. -->
+    <path d="M174 240 C 205 240, 235 258, 275 258 C 300 258, 312 250, 318 244" fill="none" stroke="#C59239" stroke-width="5.5" stroke-linecap="round" />
+    
+    <!-- T in TOO -->
+    <text x="274" y="238" font-size="94" font-weight="600" fill="#111111">
+      T
+    </text>
+    
+    <!-- Interlocked OO Rings in TOO -->
+    <circle cx="360" cy="208" r="34" fill="none" stroke="#111111" stroke-width="12" />
+    <circle cx="398" cy="208" r="34" fill="none" stroke="#111111" stroke-width="12" />
+  </g>
+  
+  <!-- Subtext "& Company Advocates" -->
+  <text x="260" y="306" text-anchor="middle" font-family="'Newsreader', 'Playfair Display', Georgia, serif" font-weight="600" font-size="32" fill="#C59239">
+    &amp; Company Advocates
+  </text>
+</svg>

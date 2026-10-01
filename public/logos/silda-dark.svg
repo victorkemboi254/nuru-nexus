@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" fill="none" class="company-logo-svg company-logo--silda">
+  <!-- Top 4 Flowing Cyan Wave Ribbons -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M125 58 C 155 32, 195 28, 225 44 C 250 56, 272 44, 280 38" stroke="#00A3E0" stroke-width="6.5" opacity="0.95" />
+    <path d="M135 68 C 162 44, 198 40, 228 54 C 250 64, 268 54, 274 50" stroke="#00A3E0" stroke-width="6" opacity="0.8" />
+    <path d="M148 78 C 172 56, 202 54, 230 65 C 248 73, 262 66, 268 62" stroke="#00A3E0" stroke-width="5.5" opacity="0.65" />
+    <path d="M162 88 C 182 70, 206 68, 232 76 C 246 82, 256 78, 260 76" stroke="#00A3E0" stroke-width="5" opacity="0.5" />
+  </g>
+  
+  <!-- Wordmark "Silda" with purple dot accents -->
+  <g>
+    <!-- S -->
+    <path d="M84 140 C 72 134, 52 142, 52 156 C 52 178, 86 170, 86 194 C 86 210, 68 214, 52 206" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" fill="none" />
+    
+    <!-- i: upright stem and purple dot -->
+    <circle cx="116" cy="120" r="10" fill="#6366F1" />
+    <path d="M116 148 L116 208" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+    
+    <!-- l: tall vertical stem -->
+    <path d="M148 116 L148 208" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+    
+    <!-- d: circular bowl and tall stem -->
+    <circle cx="196" cy="176" r="28" stroke="#FFFFFF" stroke-width="15" fill="none" />
+    <path d="M224 116 L224 208" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+    
+    <!-- a: circular loop with purple eye/dot center -->
+    <circle cx="282" cy="176" r="28" stroke="#FFFFFF" stroke-width="15" fill="none" />
+    <path d="M310 162 L310 208" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" />
+    <circle cx="282" cy="176" r="12" fill="#6366F1" />
+  </g>
+  
+  <!-- Subtext "Enterprise Limited" -->
+  <text x="182" y="254" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="500" font-size="26" letter-spacing="0.04em" fill="#00A3E0">
+    Enterprise Limited
+  </text>
+</svg>

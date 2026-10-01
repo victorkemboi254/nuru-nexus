@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" fill="none" class="company-logo-svg company-logo--jemnet">
+  <!-- Wifi Broadcast Waves above the J -->
+  <g stroke="#A78BFA" stroke-linecap="round">
+    <path d="M80 62 A 16 16 0 0 1 106 62" stroke-width="5.5" fill="none" />
+    <path d="M68 50 A 32 32 0 0 1 118 50" stroke-width="6.5" fill="none" />
+    <path d="M56 38 A 48 48 0 0 1 130 38" stroke-width="7.5" fill="none" />
+  </g>
+  
+  <!-- Wordmark "JEMNET" -->
+  <text x="30" y="142" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="900" font-size="92" letter-spacing="0.04em" fill="#FFFFFF">
+    JEMNET
+  </text>
+  
+  <!-- Slogan "Stay Connected Stay Ahead" -->
+  <text x="34" y="188" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="700" font-style="italic" font-size="28" letter-spacing="0.01em" fill="#FFFFFF" opacity="0.95">
+    Stay Connected Stay Ahead
+  </text>
+</svg>
