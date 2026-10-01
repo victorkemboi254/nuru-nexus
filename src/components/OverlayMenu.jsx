@@ -170,7 +170,11 @@ function OverlayMenu({ isOpen, onClose, currentPage = 'home', onNavigate }) {
                 onClick={() => handleNav('portfolio', 'dltoo')}
               >
                 <div className="mega-menu__port-icon-wrap">
-                  <DltooLogo mode="dark" className="mega-menu__port-logo" />
+                  <DltooLogo
+                    mode="dark"
+                    className="mega-menu__port-logo"
+                    preserveAspectRatio="xMinYMid meet"
+                  />
                 </div>
                 <h4 className="mega-menu__port-title">DLTOO Advocates</h4>
                 <div className="mega-menu__port-sector">
@@ -188,7 +192,11 @@ function OverlayMenu({ isOpen, onClose, currentPage = 'home', onNavigate }) {
                 onClick={() => handleNav('portfolio', 'silda-edutech')}
               >
                 <div className="mega-menu__port-icon-wrap">
-                  <SildaLogo mode="dark" className="mega-menu__port-logo" />
+                  <SildaLogo
+                    mode="dark"
+                    className="mega-menu__port-logo"
+                    preserveAspectRatio="xMinYMid meet"
+                  />
                 </div>
                 <h4 className="mega-menu__port-title">SILDA EduTech</h4>
                 <div className="mega-menu__port-sector">
@@ -206,7 +214,11 @@ function OverlayMenu({ isOpen, onClose, currentPage = 'home', onNavigate }) {
                 onClick={() => handleNav('portfolio', 'jemnet')}
               >
                 <div className="mega-menu__port-icon-wrap">
-                  <JemnetLogo mode="dark" className="mega-menu__port-logo" />
+                  <JemnetLogo
+                    mode="dark"
+                    className="mega-menu__port-logo"
+                    preserveAspectRatio="xMinYMid meet"
+                  />
                 </div>
                 <h4 className="mega-menu__port-title">JEMNET</h4>
                 <div className="mega-menu__port-sector">
@@ -224,7 +236,11 @@ function OverlayMenu({ isOpen, onClose, currentPage = 'home', onNavigate }) {
                 onClick={() => handleNav('portfolio', 'pentapath-group')}
               >
                 <div className="mega-menu__port-icon-wrap">
-                  <PentapathLogo mode="dark" className="mega-menu__port-logo" />
+                  <PentapathLogo
+                    mode="dark"
+                    className="mega-menu__port-logo"
+                    preserveAspectRatio="xMinYMid meet"
+                  />
                 </div>
                 <h4 className="mega-menu__port-title">Pentapath Group</h4>
                 <div className="mega-menu__port-sector">

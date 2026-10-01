@@ -8,32 +8,36 @@ os.makedirs(logo_dir, exist_ok=True)
 # ---------------------------------------------------------------------------
 def make_pentapath_svg(mode='dark'):
     primary_color = '#FFFFFF' if mode == 'dark' else '#0F273D'
+    bg_gap_color = '#0B0D13' if mode == 'dark' else '#FFFFFF'
     red_color = '#E52535'
     
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 380" fill="none" class="company-logo-svg company-logo--pentapath">
   <!-- 5 Radiating Spokes -->
   <g fill="{primary_color}">
     <!-- Center spoke (90 deg / straight up) -->
-    <rect x="257" y="28" width="26" height="88" rx="6" />
+    <rect x="257" y="24" width="26" height="92" rx="4" />
     <!-- Diagonal spokes left -->
-    <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(-38 270 144)" />
-    <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(-74 270 144)" />
+    <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(-40 270 144)" />
+    <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(-80 270 144)" />
     <!-- Diagonal spokes right -->
-    <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(38 270 144)" />
-    <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(74 270 144)" />
+    <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(40 270 144)" />
+    <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(80 270 144)" />
   </g>
   
+  <!-- Cutout Gap behind Red Chevron to separate it cleanly from the spokes -->
+  <path d="M202 196 L270 112 L338 196" fill="none" stroke="{bg_gap_color}" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" />
+  
   <!-- Red Chevron / Roof -->
-  <path d="M208 190 L270 114 L332 190" fill="none" stroke="{red_color}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M202 196 L270 112 L338 196" fill="none" stroke="{red_color}" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
   
   <!-- Wordmark "Pentapath" -->
   <text x="270" y="278" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif">
-    <tspan fill="{primary_color}" font-weight="800" font-size="78" letter-spacing="-0.01em">Penta</tspan>
-    <tspan fill="{red_color}" font-weight="800" font-size="78" letter-spacing="-0.01em">path</tspan>
+    <tspan fill="{primary_color}" font-weight="800" font-size="76" letter-spacing="-0.02em">Penta</tspan>
+    <tspan fill="{red_color}" font-weight="800" font-size="76" letter-spacing="-0.02em">path</tspan>
   </text>
   
   <!-- Subtext "GROUP LIMITED" -->
-  <text x="270" y="334" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="700" font-size="28" letter-spacing="0.22em" fill="{red_color}">
+  <text x="270" y="336" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif" font-weight="700" font-size="28" letter-spacing="0.25em" fill="{red_color}">
     GROUP LIMITED
   </text>
 </svg>'''

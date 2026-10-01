@@ -717,27 +717,29 @@ button {
 }
 
 .mega-menu__port-icon-wrap {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
-    height: 42px;
+    justify-content: flex-start;
+    height: 48px;
+    width: 100%;
 }
 
 .mega-menu__port-logo {
-    max-height: 38px;
-    max-width: 140px;
+    height: 44px;
+    max-height: 48px;
     width: auto;
-    height: auto;
-    object-fit: contain;
+    max-width: 180px;
     display: block;
     pointer-events: none;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+    transform-origin: left center;
 }
 
 .mega-menu__port-card:hover .mega-menu__port-logo {
-    transform: scale(1.06);
-    filter: drop-shadow(0 4px 14px rgba(200, 55, 45, 0.35));
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.18));
 }
 
 .mega-menu__port-icon {

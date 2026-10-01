@@ -3,7 +3,7 @@ import { memo } from 'react'
 // ============================================================================
 // 1. DLTOO ADVOCATES VECTOR BRAND LOGO
 // ============================================================================
-export const DltooLogo = memo(({ mode = 'dark', className = '', ...props }) => {
+export const DltooLogo = memo(({ mode = 'dark', className = '', preserveAspectRatio = 'xMinYMid meet', ...props }) => {
   const goldColor = mode === 'dark' ? '#D4AF37' : '#C59239'
   const tooColor = mode === 'dark' ? '#FFFFFF' : '#111111'
 
@@ -11,6 +11,7 @@ export const DltooLogo = memo(({ mode = 'dark', className = '', ...props }) => {
     <svg
       viewBox="0 0 520 360"
       fill="none"
+      preserveAspectRatio={preserveAspectRatio}
       className={`company-brand-logo company-brand-logo--dltoo ${className}`}
       aria-label="DLTOO & Company Advocates"
       {...props}
@@ -78,7 +79,7 @@ export const DltooLogo = memo(({ mode = 'dark', className = '', ...props }) => {
 // ============================================================================
 // 2. SILDA EDUTECH VECTOR BRAND LOGO
 // ============================================================================
-export const SildaLogo = memo(({ mode = 'dark', className = '', ...props }) => {
+export const SildaLogo = memo(({ mode = 'dark', className = '', preserveAspectRatio = 'xMinYMid meet', ...props }) => {
   const primaryColor = mode === 'dark' ? '#FFFFFF' : '#081A42'
   const cyanColor = '#00A3E0'
   const purpleColor = '#6366F1'
@@ -87,6 +88,7 @@ export const SildaLogo = memo(({ mode = 'dark', className = '', ...props }) => {
     <svg
       viewBox="0 0 380 280"
       fill="none"
+      preserveAspectRatio={preserveAspectRatio}
       className={`company-brand-logo company-brand-logo--silda ${className}`}
       aria-label="SILDA EduTech"
       {...props}
@@ -167,7 +169,7 @@ export const SildaLogo = memo(({ mode = 'dark', className = '', ...props }) => {
 // ============================================================================
 // 3. JEMNET VECTOR BRAND LOGO
 // ============================================================================
-export const JemnetLogo = memo(({ mode = 'dark', className = '', ...props }) => {
+export const JemnetLogo = memo(({ mode = 'dark', className = '', preserveAspectRatio = 'xMinYMid meet', ...props }) => {
   const textColor = mode === 'dark' ? '#FFFFFF' : '#2E1065'
   const waveColor = mode === 'dark' ? '#A78BFA' : '#7C3AED'
 
@@ -175,6 +177,7 @@ export const JemnetLogo = memo(({ mode = 'dark', className = '', ...props }) => 
     <svg
       viewBox="0 0 520 220"
       fill="none"
+      preserveAspectRatio={preserveAspectRatio}
       className={`company-brand-logo company-brand-logo--jemnet ${className}`}
       aria-label="JEMNET"
       {...props}
@@ -220,30 +223,42 @@ export const JemnetLogo = memo(({ mode = 'dark', className = '', ...props }) => 
 // ============================================================================
 // 4. PENTAPATH GROUP VECTOR BRAND LOGO
 // ============================================================================
-export const PentapathLogo = memo(({ mode = 'dark', className = '', ...props }) => {
+export const PentapathLogo = memo(({ mode = 'dark', className = '', preserveAspectRatio = 'xMinYMid meet', ...props }) => {
   const primaryColor = mode === 'dark' ? '#FFFFFF' : '#0F273D'
+  const bgGapColor = mode === 'dark' ? '#0B0D13' : '#FFFFFF'
   const redColor = '#E52535'
 
   return (
     <svg
       viewBox="0 0 540 380"
       fill="none"
+      preserveAspectRatio={preserveAspectRatio}
       className={`company-brand-logo company-brand-logo--pentapath ${className}`}
       aria-label="Pentapath Group Limited"
       {...props}
     >
       {/* 5 Radiating Spokes */}
       <g fill={primaryColor}>
-        <rect x="257" y="28" width="26" height="88" rx="6" />
-        <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(-38 270 144)" />
-        <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(-74 270 144)" />
-        <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(38 270 144)" />
-        <rect x="257" y="28" width="26" height="88" rx="6" transform="rotate(74 270 144)" />
+        <rect x="257" y="24" width="26" height="92" rx="4" />
+        <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(-40 270 144)" />
+        <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(-80 270 144)" />
+        <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(40 270 144)" />
+        <rect x="257" y="24" width="26" height="92" rx="4" transform="rotate(80 270 144)" />
       </g>
+
+      {/* Cutout Gap behind Red Chevron to separate it cleanly from the spokes */}
+      <path
+        d="M202 196 L270 112 L338 196"
+        fill="none"
+        stroke={bgGapColor}
+        strokeWidth="38"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
 
       {/* Red Chevron / Roof */}
       <path
-        d="M208 190 L270 114 L332 190"
+        d="M202 196 L270 112 L338 196"
         fill="none"
         stroke={redColor}
         strokeWidth="24"
@@ -258,10 +273,10 @@ export const PentapathLogo = memo(({ mode = 'dark', className = '', ...props }) 
         textAnchor="middle"
         fontFamily="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif"
       >
-        <tspan fill={primaryColor} fontWeight="800" fontSize="78" letterSpacing="-0.01em">
+        <tspan fill={primaryColor} fontWeight="800" fontSize="76" letterSpacing="-0.02em">
           Penta
         </tspan>
-        <tspan fill={redColor} fontWeight="800" fontSize="78" letterSpacing="-0.01em">
+        <tspan fill={redColor} fontWeight="800" fontSize="76" letterSpacing="-0.02em">
           path
         </tspan>
       </text>
@@ -269,12 +284,12 @@ export const PentapathLogo = memo(({ mode = 'dark', className = '', ...props }) 
       {/* Subtext "GROUP LIMITED" */}
       <text
         x="270"
-        y="334"
+        y="336"
         textAnchor="middle"
         fontFamily="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif"
         fontWeight="700"
         fontSize="28"
-        letterSpacing="0.22em"
+        letterSpacing="0.25em"
         fill={redColor}
       >
         GROUP LIMITED

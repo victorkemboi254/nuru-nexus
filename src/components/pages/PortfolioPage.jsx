@@ -340,7 +340,7 @@ function PortfolioPage({ initialCompanyId, onNavigate }) {
 
               {/* Giant Brand Logo on Right (Transparent, Crisp) */}
               <div className="company-hero-piece" aria-hidden="true">
-                <CurrentPieceSvg mode="dark" className="company-hero-logo" />
+                <CurrentPieceSvg mode="dark" className="company-hero-logo" preserveAspectRatio="xMidYMid meet" />
               </div>
             </div>
           </div>
@@ -404,7 +404,7 @@ function PortfolioPage({ initialCompanyId, onNavigate }) {
                     onClick={() => openCompany(comp)}
                   >
                     <div className="company-elsewhere-icon">
-                      <CompPiece mode="light" />
+                      <CompPiece mode="light" preserveAspectRatio="xMidYMid meet" />
                     </div>
                     <h3 className="company-elsewhere-name">{comp.name}</h3>
                     <span className="company-elsewhere-sector">{comp.sectorTitle || comp.sector}</span>
@@ -458,7 +458,7 @@ function PortfolioPage({ initialCompanyId, onNavigate }) {
                     aria-label={`${company.name} (${company.coordinate})`}
                   >
                     <div className="portfolio-piece-box__icon">
-                      <PieceComponent mode="dark" />
+                      <PieceComponent mode="dark" preserveAspectRatio="xMidYMid meet" />
                     </div>
                   </button>
                 )
@@ -544,7 +544,7 @@ function PortfolioPage({ initialCompanyId, onNavigate }) {
                   <div className="portfolio-file-coord">{company.coordinate}</div>
 
                   <div className="portfolio-file-icon">
-                    <RowPiece mode="light" />
+                    <RowPiece mode="light" preserveAspectRatio="xMidYMid meet" />
                   </div>
 
                   <div className="portfolio-file-identity">

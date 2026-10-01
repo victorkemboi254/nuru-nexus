@@ -170,7 +170,7 @@ function TheBoard({ onNavigate }) {
                     aria-label={`${company.name} (${company.coordinate})`}
                   >
                     <div className="board-box-cell__icon">
-                      <PieceSvg mode="dark" />
+                      <PieceSvg mode="dark" preserveAspectRatio="xMidYMid meet" />
                     </div>
                   </button>
                 )
