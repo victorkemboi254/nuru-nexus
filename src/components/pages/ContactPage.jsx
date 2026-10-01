@@ -1,4 +1,13 @@
 import { useState } from 'react'
+import './ContactPage.css'
+
+const DIRECT_OPTIONS = [
+  { id: 'group', label: 'GROUP ENQUIRY' },
+  { id: 'dltoo', label: 'DLTOO ADVOCATES' },
+  { id: 'silda', label: 'SILDA EDUTECH' },
+  { id: 'jemnet', label: 'JEMNET' },
+  { id: 'pentapath', label: 'PENTAPATH GROUP' },
+]
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -6,8 +15,7 @@ function ContactPage() {
     organisation: '',
     email: '',
     phone: '',
-    enquiryType: '',
-    subsidiary: '',
+    directTo: 'group',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
@@ -15,6 +23,10 @@ function ContactPage() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSelectDirect = (id) => {
+    setFormData((prev) => ({ ...prev, directTo: id }))
   }
 
   const handleSubmit = (e) => {
@@ -29,220 +41,217 @@ function ContactPage() {
       organisation: '',
       email: '',
       phone: '',
-      enquiryType: '',
-      subsidiary: '',
+      directTo: 'group',
       message: '',
     })
   }
 
   return (
-    <div className="subpage">
-      {/* Hero */}
-      <section className="subpage-hero">
-        <div className="subpage-hero__inner">
-          <div className="subpage-hero__badge">
-            <span className="subpage-hero__badge-dot"></span>
-            <span>Get In Touch</span>
-            <span className="subpage-hero__divider">/</span>
-            <span className="subpage-hero__current">Contact Us</span>
-          </div>
-          <h1 className="subpage-hero__title">Contact Nuru Nexus</h1>
-          <p className="subpage-hero__lead">
-            Whether you are an institutional investor, prospective partner, corporate client,
-            or exploring opportunities across our subsidiaries, our team is ready to respond with excellence.
-          </p>
+    <div className="contact-page-root">
+      <div className="contact-container">
+        {/* Eyebrow: — CONTACT */}
+        <div className="contact-eyebrow">
+          <span className="contact-eyebrow__dash" aria-hidden="true" />
+          <span>CONTACT</span>
         </div>
-      </section>
 
-      {/* Main Contact Section */}
-      <section className="contact-page-body">
-        <div className="subpage-container">
-          <div className="contact-page__grid">
-            {/* Left Column: Coordinates */}
-            <div className="contact-page__info">
-              <span className="subpage-eyebrow">Direct Channels</span>
-              <h2 className="contact-page__heading">Group Headquarters &amp; Executive Offices</h2>
-              <p className="contact-page__desc">
-                Our headquarters coordinates executive strategy,
-                legal governance, and technological investment across all subsidiaries.
-              </p>
+        {/* Main Title */}
+        <h1 className="contact-main-title">Open a line to the group.</h1>
 
-              <div className="contact-page__cards">
+        {/* Subtitle / Lead Paragraph */}
+        <p className="contact-lead-text">
+          Enquiries reach the holding company first and are routed to the right business within one working day.
+        </p>
 
-                <div className="contact-info-card">
-                  <div className="contact-info-card__icon" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                  </div>
-                  <div className="contact-info-card__text">
-                    <span className="contact-info-card__label">Telephone Inquiries</span>
-                    <a href="tel:+254709622000" className="contact-info-card__link">
-                      +254 709 622 000
-                    </a>
-                    <a href="tel:+254748381108" className="contact-info-card__link">
-                      +254 748 381 108
-                    </a>
-                  </div>
-                </div>
-
-                <div className="contact-info-card">
-                  <div className="contact-info-card__icon" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                  </div>
-                  <div className="contact-info-card__text">
-                    <span className="contact-info-card__label">Electronic Mail</span>
-                    <a href="mailto:hello@nurunexus.co.ke" className="contact-info-card__link">
-                      hello@nurunexus.co.ke (General)
-                    </a>
-                    <a href="mailto:investors@nurunexus.co.ke" className="contact-info-card__link">
-                      investors@nurunexus.co.ke (Investors)
-                    </a>
-                  </div>
-                </div>
+        {/* 2-Column Grid Layout */}
+        <div className="contact-layout-grid">
+          {/* Left Column: Form */}
+          <div className="contact-form-col">
+            {submitted ? (
+              <div className="contact-success-box" role="alert">
+                <div className="contact-success-box__icon" aria-hidden="true">✓</div>
+                <h3>Message Dispatched</h3>
+                <p>
+                  Thank you for reaching out. Your enquiry has been routed to our executive team
+                  and the relevant operating business. You will hear back within one working day.
+                </p>
+                <button
+                  type="button"
+                  className="contact-reset-btn"
+                  onClick={handleReset}
+                >
+                  <span>SEND ANOTHER MESSAGE</span>
+                </button>
               </div>
-            </div>
-
-            {/* Right Column: Inquiry Form */}
-            <div className="contact-page__form-wrap">
-              {submitted ? (
-                <div className="contact-success-box">
-                  <div className="contact-success-box__icon" aria-hidden="true">✓</div>
-                  <h3>Thank You for Reaching Out</h3>
-                  <p>
-                    Your enquiry has been received by our executive secretariat.
-                    A representative from Nuru Nexus will review your note and respond within one business day.
-                  </p>
-                  <button type="button" className="btn btn--primary" onClick={handleReset}>
-                    Send Another Message
-                  </button>
-                </div>
-              ) : (
-                <form className="contact-page__form" onSubmit={handleSubmit}>
-                  <div className="contact-page__form-header">
-                    <h3>Send Us an Enquiry</h3>
-                    <p>Complete the form below and specify the appropriate sector or subsidiary.</p>
-                  </div>
-
-                  <div className="contact__field-row">
-                    <div className="contact__field">
-                      <label htmlFor="fullName">Full name *</label>
-                      <input
-                        id="fullName"
-                        name="fullName"
-                        type="text"
-                        required
-                        placeholder="e.g. John Doe"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="contact__field">
-                      <label htmlFor="organisation">Organisation / Company</label>
-                      <input
-                        id="organisation"
-                        name="organisation"
-                        type="text"
-                        placeholder="e.g. Acme Corp Ltd"
-                        value={formData.organisation}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="contact__field-row">
-                    <div className="contact__field">
-                      <label htmlFor="email">Official Email *</label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="john@company.com"
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="contact__field">
-                      <label htmlFor="phone">Phone Number</label>
-                      <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        placeholder="+254 7XX XXX XXX"
-                        value={formData.phone}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="contact__field-row">
-                    <div className="contact__field">
-                      <label htmlFor="enquiryType">Enquiry Type *</label>
-                      <select
-                        id="enquiryType"
-                        name="enquiryType"
-                        required
-                        value={formData.enquiryType}
-                        onChange={handleChange}
-                      >
-                        <option value="" disabled>Select enquiry category</option>
-                        <option value="partnership">Strategic Partnership</option>
-                        <option value="investor">Investor Relations</option>
-                        <option value="legal">Corporate Legal Advisory (DLTOO)</option>
-                        <option value="edutech">EduTech &amp; Library Solutions (SILDA)</option>
-                        <option value="fiber">Enterprise Fiber &amp; ICT (JEMNET)</option>
-                        <option value="software">Software &amp; RFID Systems (PENTAPATH)</option>
-                        <option value="media">Media &amp; Press Relations</option>
-                        <option value="general">General Corporate Enquiry</option>
-                      </select>
-                    </div>
-
-                    <div className="contact__field">
-                      <label htmlFor="subsidiary">Relevant Subsidiary</label>
-                      <select
-                        id="subsidiary"
-                        name="subsidiary"
-                        value={formData.subsidiary}
-                        onChange={handleChange}
-                      >
-                        <option value="">Group Level (General)</option>
-                        <option value="DLTOO">DLTOO &amp; Company Advocates</option>
-                        <option value="SILDA">SILDA EduTech</option>
-                        <option value="JEMNET">JEMNET ISP</option>
-                        <option value="PENTAPATH">PENTAPATH Systems</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="contact__field contact__field--full">
-                    <label htmlFor="message">Your Message *</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows="5"
+            ) : (
+              <form className="contact-form" onSubmit={handleSubmit}>
+                {/* Row 1: Full Name & Organisation */}
+                <div className="contact-form__row">
+                  <div className="contact-field-group">
+                    <label htmlFor="fullName" className="contact-field-label">
+                      FULL NAME
+                    </label>
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
                       required
-                      placeholder="Please provide details about your inquiry, project requirements, or strategic interest..."
-                      value={formData.message}
+                      placeholder=""
+                      value={formData.fullName}
                       onChange={handleChange}
+                      className="contact-underline-input"
                     />
                   </div>
 
-                  <button type="submit" className="contact__submit btn--primary-submit">
-                    <span>Submit Enquiry</span>
-                    <span aria-hidden="true">→</span>
-                  </button>
-                </form>
-              )}
-            </div>
+                  <div className="contact-field-group">
+                    <label htmlFor="organisation" className="contact-field-label">
+                      ORGANISATION
+                    </label>
+                    <input
+                      id="organisation"
+                      name="organisation"
+                      type="text"
+                      placeholder=""
+                      value={formData.organisation}
+                      onChange={handleChange}
+                      className="contact-underline-input"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2: Email & Phone */}
+                <div className="contact-form__row">
+                  <div className="contact-field-group">
+                    <label htmlFor="email" className="contact-field-label">
+                      EMAIL
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder=""
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="contact-underline-input"
+                    />
+                  </div>
+
+                  <div className="contact-field-group">
+                    <label htmlFor="phone" className="contact-field-label">
+                      PHONE
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder=""
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="contact-underline-input"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 3: DIRECT TO Pills */}
+                <div className="contact-direct-group">
+                  <span className="contact-field-label">DIRECT TO</span>
+                  <div className="contact-direct-pills" role="radiogroup" aria-label="Direct enquiry to">
+                    {DIRECT_OPTIONS.map((opt) => {
+                      const isSelected = formData.directTo === opt.id
+                      return (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          role="radio"
+                          aria-checked={isSelected}
+                          className={`contact-pill-btn ${isSelected ? 'contact-pill-btn--active' : ''}`}
+                          onClick={() => handleSelectDirect(opt.id)}
+                        >
+                          {opt.label}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* Row 4: MESSAGE */}
+                <div className="contact-message-group">
+                  <label htmlFor="message" className="contact-field-label">
+                    MESSAGE
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows="4"
+                    placeholder=""
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="contact-underline-textarea"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button type="submit" className="contact-submit-btn">
+                  <span>SEND MESSAGE</span>
+                  <span className="arrow" aria-hidden="true">→</span>
+                </button>
+              </form>
+            )}
           </div>
+
+          {/* Right Column: Sidebar Information (Screenshots 1 & 2) */}
+          <aside className="contact-info-col" aria-label="Office and contact coordinates">
+            {/* Dark Box: REGISTERED OFFICE */}
+            <div className="contact-office-card">
+              <div className="contact-office-card__label">REGISTERED OFFICE</div>
+              <h2 className="contact-office-card__name">NuruNexus Holdings Ltd</h2>
+              <p className="contact-office-card__location">Nairobi, Kenya</p>
+            </div>
+
+            {/* DIRECT */}
+            <div className="contact-direct-card">
+              <div className="contact-section-label">DIRECT</div>
+              <div className="contact-direct-links">
+                <a href="mailto:info@nurunexus.com" className="contact-direct-link">
+                  info@nurunexus.com
+                </a>
+                <a href="tel:+254200000000" className="contact-direct-link">
+                  +254 (0) 20 000 0000
+                </a>
+              </div>
+            </div>
+
+            {/* HOURS */}
+            <div className="contact-hours-card">
+              <div className="contact-section-label">HOURS</div>
+              <p className="contact-hours-text">Monday – Friday, 08:30 – 17:30 EAT</p>
+            </div>
+
+            {/* Warm Sand Map / Headquarters Anchor Block */}
+            <div className="contact-map-block" aria-label="Headquarters map visual">
+              <div className="contact-map-content">
+                <svg
+                  className="contact-map-pin"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <div className="contact-map-city">Nairobi Headquarters</div>
+                <div className="contact-map-coords">1°17′S 36°49′E · EAT (UTC+3)</div>
+              </div>
+            </div>
+          </aside>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

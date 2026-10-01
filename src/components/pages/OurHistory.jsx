@@ -1,46 +1,39 @@
 function OurHistory({ onNavigate }) {
   const milestones = [
     {
-      year: '2018',
-      title: 'The Inception & Founding Thesis',
-      tag: 'Foundation',
+      year: '2016',
+      title: 'Foundation laid',
+      tag: '01 — NAIROBI',
       description:
-        'Nuru Nexus was conceived in Nairobi by seasoned entrepreneurs and professionals who observed that high-potential African enterprises frequently struggled with fragmented capital, inconsistent governance, and siloed technological support. The group was established to create a unified holding ecosystem.',
+        "The first operating business is established in Nairobi, setting the group's delivery culture.",
+    },
+    {
+      year: '2018',
+      title: 'Legal practice formalised',
+      tag: '02 — DLTOO ADVOCATES',
+      description:
+        'DLTOO Advocates brings advisory and governance capability in-house.',
     },
     {
       year: '2020',
-      title: 'Strategic Entry into Legal & Corporate Advisory',
-      tag: 'DLTOO Advocates',
+      title: 'Connectivity licensed',
+      tag: '03 — JEMNET ISP',
       description:
-        'Formalized alignment with D.L.TOO & Company Advocates, establishing premier corporate legal representation, commercial dispute arbitration, land conveyancing, and regulatory compliance advisory for enterprises navigating complex African commercial environments.',
+        'JEMNET begins operating as a licensed ISP, building owned fiber infrastructure.',
     },
     {
       year: '2022',
-      title: 'Pioneering Academic & Knowledge Infrastructure',
-      tag: 'SILDA EduTech',
+      title: 'Institutional platforms',
+      tag: '04 — SILDA EDUTECH',
       description:
-        'Founded SILDA to bridge critical gaps in university and institutional knowledge infrastructure. Partnered with global platforms including MyLOFT and RemoteXs to deliver remote e-resource access and RFID library automation across institutions throughout Kenya and East Africa.',
+        'SILDA EduTech scales MyLOFT, RemoteXs and RFID automation across academic institutions.',
     },
     {
       year: '2024',
-      title: 'Licensed Fiber Connectivity & Turnkey ICT',
-      tag: 'JEMNET ISP',
+      title: 'Regional expansion',
+      tag: '05 — EAST AFRICA',
       description:
-        'Launched JEMNET as a licensed Internet Service Provider (ISP), rolling out dedicated high-speed optical fiber for commercial enterprises, residential parks, PBX telephony, biometric surveillance, and enterprise structured networking.',
-    },
-    {
-      year: '2025',
-      title: 'Intelligent Software & Automation Integration',
-      tag: 'PENTAPATH Group',
-      description:
-        'Welcomed Pentapath Group into the holding umbrella, accelerating proprietary software engineering, automated smart biometric access gates, RFID inventory solutions, and modern cloud database architectures.',
-    },
-    {
-      year: '2026+',
-      title: 'Cross-Border Scale & Pan-African Horizons',
-      tag: 'Future Vision',
-      description:
-        'Consolidating cross-subsidiary synergies, expanding operations across the East African Community, and actively exploring clean energy and digital fintech infrastructure to propel the next generation of African commercial leadership.',
+        "Extending the group's infrastructure and platform capability across East Africa.",
     },
   ]
 

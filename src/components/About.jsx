@@ -101,7 +101,7 @@ function About({ onNavigate }) {
               <button
                 type="button"
                 className="about-banner__btn about-banner__btn--primary"
-                onClick={() => onNavigate('company-profile')}
+                onClick={() => onNavigate('about', 'profile')}
               >
                 <span>Company Profile</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -112,7 +112,7 @@ function About({ onNavigate }) {
               <button
                 type="button"
                 className="about-banner__btn about-banner__btn--secondary"
-                onClick={() => onNavigate('our-history')}
+                onClick={() => onNavigate('about', 'history')}
               >
                 <span>Our History</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

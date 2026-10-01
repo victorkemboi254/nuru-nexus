@@ -1,182 +1,130 @@
-import queenMark from '../assets/nuru-queen-mark.png'
+import './Footer.css'
 
 function Footer({ onNavigate }) {
-  const handleNav = (page) => {
+  const handleNav = (page, anchor) => {
     if (onNavigate) {
-      onNavigate(page)
+      onNavigate(page, anchor)
     }
   }
 
   return (
-    <footer className="footer-dl">
-      <div className="footer-dl__container">
-        <div className="footer-dl__grid">
-          {/* Column 1: Brand & Socials */}
-          <div className="footer-dl__col footer-dl__col--brand">
-            <div className="footer-dl__logo-box">
-              <div className="footer-dl__logo-emblem">
-                <img src={queenMark} alt="Nuru Nexus" className="footer-dl__mark" />
-              </div>
-              <div className="footer-dl__brand-text">
-                <span className="footer-dl__brand-title">NURU NEXUS</span>
-                <span className="footer-dl__brand-sub">HOLDING LTD</span>
-              </div>
-            </div>
+    <footer className="site-footer" id="site-footer" aria-label="Site Footer">
+      <div className="site-footer__container">
+        {/* Main 4-Column Architectural Grid */}
+        <div className="site-footer__grid">
+          {/* Column 1: Brand, Overview & Speak With Group CTA */}
+          <div className="site-footer__col site-footer__col--brand">
+            <button
+              type="button"
+              className="site-footer__brand"
+              onClick={() => handleNav('home')}
+              aria-label="NuruNexus Holdings Home"
+            >
+              {/* Red Line-Art Queen/Hourglass Emblem */}
+              <svg width="26" height="34" viewBox="0 0 28 36" fill="none" className="site-footer__emblem-svg" aria-hidden="true">
+                <circle cx="14" cy="5" r="2.5" stroke="#C8372D" strokeWidth="1.8" />
+                <path d="M7 11h14l-7 9-7-9z" stroke="#C8372D" strokeWidth="1.8" strokeLinejoin="round" />
+                <path d="M7 29h14l-7-8-7 8z" stroke="#C8372D" strokeWidth="1.8" strokeLinejoin="round" />
+                <line x1="5" y1="32" x2="23" y2="32" stroke="#C8372D" strokeWidth="1.8" strokeLinecap="round" />
+              </svg>
 
-            <p className="footer-dl__tagline">
-              Your strategic partner in growth, driving visionary stewardship
-              through operational excellence and sustainable value creation across Africa.
+              <div className="site-footer__brand-text">
+                <span className="site-footer__brand-name">NuruNexus</span>
+                <span className="site-footer__brand-sub">HOLDINGS LTD</span>
+              </div>
+            </button>
+
+            <p className="site-footer__summary">
+              A privately held, Nairobi-headquartered investment holding company operating four businesses in law, education technology, connectivity and software.
             </p>
 
-            <div className="footer-dl__socials" aria-label="Social media channels">
-              {/* Facebook */}
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-dl__social-btn"
-                aria-label="Facebook"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-
-              {/* X / Twitter */}
-              <a
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-dl__social-btn"
-                aria-label="X (Twitter)"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-dl__social-btn"
-                aria-label="LinkedIn"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect x="2" y="9" width="4" height="12" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-
-              {/* Instagram */}
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-dl__social-btn"
-                aria-label="Instagram"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-              </a>
-
-              {/* TikTok */}
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-dl__social-btn"
-                aria-label="TikTok"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.03 3.66.02 7.33-.03 10.99-.11 2.37-1.12 4.67-2.89 6.25-1.78 1.58-4.27 2.4-6.66 2.18-2.61-.22-5.04-1.7-6.42-3.89-1.39-2.18-1.55-5-0.45-7.34 1.09-2.34 3.39-3.95 5.96-4.22.82-.09 1.65-.05 2.46.12v4.23c-.76-.23-1.58-.28-2.35-.12-1.14.22-2.17.95-2.73 1.96-.56 1.01-.59 2.25-.09 3.28.51 1.03 1.52 1.77 2.66 1.95 1.14.18 2.34-.17 3.16-.96.82-.79 1.25-1.93 1.24-3.08V.02h-.08z" />
-                </svg>
-              </a>
-            </div>
+            <button
+              type="button"
+              className="site-footer__cta-btn"
+              onClick={() => handleNav('contact')}
+            >
+              SPEAK WITH THE GROUP
+            </button>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="footer-dl__col">
-            <h3 className="footer-dl__col-title">Quick Links</h3>
-            <ul className="footer-dl__links">
+          {/* Column 2: Portfolio Links */}
+          <div className="site-footer__col">
+            <h3 className="site-footer__col-title">PORTFOLIO</h3>
+            <ul className="site-footer__list">
               <li>
-                <button type="button" onClick={() => handleNav('home')}>
-                  Home
+                <button type="button" onClick={() => handleNav('portfolio', 'dltoo')}>
+                  DLTOO Advocates
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => handleNav('company-profile')}>
-                  Company Profile
+                <button type="button" onClick={() => handleNav('portfolio', 'silda-edutech')}>
+                  SILDA EduTech
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => handleNav('our-history')}>
-                  Our History
+                <button type="button" onClick={() => handleNav('portfolio', 'jemnet')}>
+                  JEMNET
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => handleNav('executive-team')}>
-                  Executive Team
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => handleNav('board-of-directors')}>
-                  Board of Directors
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => handleNav('portfolio')}>
-                  Portfolio
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => handleNav('contact')}>
-                  Contact Us
+                <button type="button" onClick={() => handleNav('portfolio', 'pentapath-group')}>
+                  Pentapath Group
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Contact Us */}
-          <div className="footer-dl__col">
-            <h3 className="footer-dl__col-title">Contact Us</h3>
-            <div className="footer-dl__contact-list">
-              <div className="footer-dl__contact-item">
-                <svg className="footer-dl__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <div className="footer-dl__contact-text">
-                  <a href="tel:+254709622000">+254 709 622 000</a>
-                  <a href="tel:+254748381108">+254 748 381 108</a>
-                </div>
-              </div>
+          {/* Column 3: Company Subpages */}
+          <div className="site-footer__col">
+            <h3 className="site-footer__col-title">COMPANY</h3>
+            <ul className="site-footer__list">
+              <li>
+                <button type="button" onClick={() => handleNav('about', 'profile')}>
+                  Company profile
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleNav('about', 'history')}>
+                  Our history
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleNav('about', 'leadership')}>
+                  Executive team
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={() => handleNav('about', 'governance')}>
+                  Board & governance
+                </button>
+              </li>
+            </ul>
+          </div>
 
-              <div className="footer-dl__contact-item">
-                <svg className="footer-dl__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-                <div className="footer-dl__contact-text">
-                  <a href="mailto:hello@nurunexus.co.ke">hello@nurunexus.co.ke</a>
-                </div>
-              </div>
+          {/* Column 4: Registered Office */}
+          <div className="site-footer__col">
+            <h3 className="site-footer__col-title">REGISTERED OFFICE</h3>
+            <div className="site-footer__office-info">
+              <span className="site-footer__office-name">NuruNexus Holdings Ltd</span>
+              <span className="site-footer__office-loc">Nairobi, Kenya</span>
+              <a href="mailto:info@nurunexus.com" className="site-footer__office-link">
+                info@nurunexus.com
+              </a>
+              <a href="tel:+254200000000" className="site-footer__office-link">
+                +254 (0) 20 000 0000
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="footer-dl__bottom">
-          <p className="footer-dl__copy">
-            &copy; {new Date().getFullYear()} Nuru Nexus Holding Ltd. All rights reserved.
+        {/* Bottom Bar: Copyright & Privately Held Badge */}
+        <div className="site-footer__bottom">
+          <p className="site-footer__copy">
+            © 2026 NuruNexus Holdings Ltd. All rights reserved.
           </p>
-          {/* <p className="footer-dl__motto">
-            Your Strategic Partner in Growth
-          </p> */}
+          <span className="site-footer__tagline">
+            PRIVATELY HELD · NAIROBI, KENYA
+          </span>
         </div>
       </div>
     </footer>

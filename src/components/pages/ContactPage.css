@@ -1,0 +1,484 @@
+/* ==========================================================================
+   ContactPage.css - Premier NuruNexus Contact Page
+   Exact Match to Lovable Reference Screenshots
+   ========================================================================== */
+
+.contact-page-root {
+  background-color: #FAF8F5;
+  color: #111827;
+  min-height: 100vh;
+  padding-top: 130px;
+  padding-bottom: 120px;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+}
+
+.contact-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+  text-align: left;
+}
+
+/* Eyebrow: — CONTACT */
+.contact-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C8372D;
+  margin-bottom: 24px;
+}
+
+.contact-eyebrow__dash {
+  width: 24px;
+  height: 1.5px;
+  background-color: #C8372D;
+  display: inline-block;
+}
+
+/* Main title: Open a line to the group. */
+.contact-main-title {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: #111827;
+  margin: 0 0 20px 0;
+}
+
+/* Subtitle */
+.contact-lead-text {
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: #555962;
+  margin: 0 0 64px 0;
+  max-width: 640px;
+}
+
+/* 2-Column Main Layout: Form (Left) & Sidebar Information (Right) */
+.contact-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: clamp(48px, 6vw, 104px);
+  align-items: start;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: INQUIRY FORM
+   ========================================================================== */
+
+.contact-form-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.contact-field-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.contact-field-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #726D68;
+  margin-bottom: 8px;
+}
+
+.contact-underline-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #D5CEBF;
+  background: transparent;
+  padding: 10px 0 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #111827;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-underline-input:focus {
+  border-bottom-color: #C8372D;
+}
+
+.contact-underline-input::placeholder {
+  color: #A39D92;
+  font-weight: 400;
+}
+
+/* DIRECT TO: Selectable Pill Buttons */
+.contact-direct-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.contact-direct-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  margin-top: 4px;
+}
+
+.contact-pill-btn {
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid #D8D2C6;
+  color: #1F242F;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 1px;
+  white-space: nowrap;
+}
+
+.contact-pill-btn:hover {
+  border-color: #C8372D;
+  color: #C8372D;
+}
+
+.contact-pill-btn--active {
+  background-color: #C8372D !important;
+  border-color: #C8372D !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(200, 55, 45, 0.25);
+}
+
+/* MESSAGE Textarea */
+.contact-message-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.contact-underline-textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #D5CEBF;
+  background: transparent;
+  padding: 12px 0;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #111827;
+  border-radius: 0;
+  outline: none;
+  resize: vertical;
+  min-height: 110px;
+  transition: border-color 0.2s ease;
+}
+
+.contact-underline-textarea:focus {
+  border-bottom-color: #C8372D;
+}
+
+.contact-underline-textarea::placeholder {
+  color: #A39D92;
+}
+
+/* Submit Button: SEND MESSAGE → */
+.contact-submit-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background-color: #C8372D;
+  border: 1px solid #C8372D;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 14px rgba(200, 55, 45, 0.28);
+}
+
+.contact-submit-btn:hover {
+  background-color: #A92E25;
+  border-color: #A92E25;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 55, 45, 0.4);
+}
+
+.contact-submit-btn span.arrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.contact-submit-btn:hover span.arrow {
+  transform: translateX(4px);
+}
+
+/* Success Confirmation Box */
+.contact-success-box {
+  background: #FFFFFF;
+  border: 1px solid #E2DCD4;
+  padding: 44px 36px;
+  border-radius: 2px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.contact-success-box__icon {
+  width: 44px;
+  height: 44px;
+  background-color: rgba(200, 55, 45, 0.1);
+  color: #C8372D;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact-success-box h3 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #111827;
+  margin: 0 0 12px 0;
+}
+
+.contact-success-box p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #4B5563;
+  margin: 0 0 28px 0;
+  max-width: 540px;
+}
+
+.contact-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid #111827;
+  color: #111827;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-reset-btn:hover {
+  background: #111827;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: SIDEBAR INFORMATION (Screenshot 1 & 2)
+   ========================================================================== */
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card 1: Registered Office (Dark Block) */
+.contact-office-card {
+  background-color: #0B0E14;
+  color: #FFFFFF;
+  padding: 36px 36px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-office-card__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8F95A3;
+  margin-bottom: 16px;
+}
+
+.contact-office-card__name {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+}
+
+.contact-office-card__location {
+  font-size: 0.95rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+/* Card 2: DIRECT */
+.contact-direct-card {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #726D68;
+  margin-bottom: 14px;
+}
+
+.contact-direct-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-direct-link {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-direct-link:hover {
+  color: #C8372D;
+}
+
+/* Card 3: HOURS */
+.contact-hours-card {
+  border-top: 1px solid #E2DCD4;
+  margin-top: 36px;
+  padding-top: 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-hours-text {
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+/* Card 4: Light Warm Grey / Sand Block (Map / Regional Anchor) */
+.contact-map-block {
+  margin-top: 24px;
+  height: 240px;
+  background-color: #DCD6CC;
+  border: 1px solid #D0C9BD;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle architectural coordinate grid in the map block */
+.contact-map-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.contact-map-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-map-pin {
+  width: 24px;
+  height: 24px;
+  color: #C8372D;
+}
+
+.contact-map-city {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1F242F;
+}
+
+.contact-map-coords {
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #726D68;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .contact-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  .contact-info-col {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-page-root {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .contact-form__row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .contact-direct-pills {
+    flex-direction: column;
+  }
+
+  .contact-pill-btn {
+    text-align: center;
+  }
+}

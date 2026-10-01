@@ -1,215 +1,562 @@
-import { useEffect } from 'react'
+import { useState, useEffect, useRef, startTransition } from 'react'
+import { DltooLogo, SildaLogo, JemnetLogo, PentapathLogo } from '../CompanyLogos'
+import './PortfolioPage.css'
 
-const portfolioData = [
+// ============================================================================
+// COMPANY BRAND LOGOS - Transparent & Brand Authentic (Replaces chess pieces)
+// ============================================================================
+
+export { DltooLogo, SildaLogo, JemnetLogo, PentapathLogo }
+
+// Backward compatibility aliases
+export const BishopPiece = DltooLogo
+export const RookPiece = SildaLogo
+export const KnightPiece = JemnetLogo
+export const QueenPiece = PentapathLogo
+
+// ============================================================================
+// PORTFOLIO COMPANIES DATASET - Full Fidelity to Lovable Screenshots
+// ============================================================================
+
+export const PORTFOLIO_COMPANIES = [
   {
     id: 'dltoo',
-    tag: 'D.L.TOO & COMPANY | ADVOCATES',
-    motto: 'Your Trusted Legal Partner',
-    title: 'Legal Advisory & Corporate Commercial Practice',
-    companyName: 'D.L.TOO & Company Advocates',
-    description:
-      "Kenya's premier legal practice delivering strategic corporate counsel, commercial dispute litigation, real estate conveyance, intellectual property, and regulatory advisory for modern enterprises.",
-    capabilities: [
-      'Corporate & Commercial Law',
-      'Conveyancing & Real Estate',
-      'Litigation & ADR',
-      'Regulatory Compliance & Governance',
-    ],
-    image: '/dltoo.jpeg',
+    slug: 'dltoo',
+    coordinate: 'C1',
+    boardCol: 0,
+    indexText: '01 / 04',
+    name: 'DLTOO Advocates',
+    sector: 'LEGAL ADVISORY & CORPORATE GOVERNANCE',
+    sectorTitle: 'Legal Advisory & Corporate Governance',
+    tagline: 'Counsel that moves on the diagonal — precise, far-sighted, unblocked.',
+    description: 'Legal advisory and corporate governance for institutions that cannot afford ambiguity.',
+    discipline: 'Legal Advisory',
+    focusLabel: 'FOCUS',
+    focusValue: 'Corporate & governance',
+    base: 'Nairobi',
     website: 'https://dltooadvocates.org',
-    buttonText: 'Visit DLTOO Website',
+    overview: [
+      'D.L.TOO & Company Advocates provides specialised corporate counsel, commercial dispute litigation, real estate conveyance, and regulatory advisory for modern enterprises.',
+      "The practice acts as the group's legal and governance spine, ensuring that contracts, corporate actions, and statutory filings across all subsidiaries operate with institutional rigor.",
+    ],
+    motto: 'PRECISION. DISCIPLINE. FIDUCIARY RIGOR.',
+    capabilities: [
+      {
+        title: 'Corporate & Commercial Advisory',
+        desc: 'Strategic corporate counsel, board governance frameworks, and commercial contract drafting.',
+      },
+      {
+        title: 'Litigation & Dispute Resolution',
+        desc: 'Commercial dispute arbitration, court representation, and mediation across complex jurisdictions.',
+      },
+      {
+        title: 'Real Estate & Conveyancing',
+        desc: 'Property acquisition, institutional leasing, land registration, and securitisation.',
+      },
+      {
+        title: 'Regulatory Compliance',
+        desc: 'Statutory reporting, antitrust, licensing, and corporate secretarial management.',
+      },
+    ],
+    pieceComponent: BishopPiece,
   },
   {
     id: 'silda',
-    tag: 'SILDA ENTERPRISE | EDUTECH & SYSTEMS',
-    motto: 'Innovating Education Technology in Africa',
-    title: 'Digital Academic Infrastructure & Library Automation',
-    companyName: 'SILDA Enterprise Limited',
-    description:
-      'We are an EduTech company providing process automation in education and research industries. We serve academics, corporates, research, and government institutions across Africa with MyLOFT, RemoteXs, and RFID library automation.',
-    capabilities: [
-      'Remote Knowledge Gateways',
-      'RFID Library Automation',
-      'Federated Academic Portals',
-      'Campus Information Management',
-    ],
-    image: '/silda.jpg',
+    slug: 'silda-edutech',
+    coordinate: 'A1',
+    boardCol: 1,
+    indexText: '02 / 04',
+    name: 'SILDA EduTech',
+    sector: 'ACADEMIC & LIBRARY INFRASTRUCTURE',
+    sectorTitle: 'Academic & Library Infrastructure',
+    tagline: 'The foundation piece — steady, structural, holding the knowledge base open.',
+    description: 'Academic and library infrastructure: MyLOFT, RemoteXs and RFID library automation.',
+    discipline: 'EduTech',
+    focusLabel: 'SERVES',
+    focusValue: 'Universities & libraries',
+    base: 'Nairobi',
     website: 'https://silda.co.ke',
-    buttonText: 'Visit Silda Website',
+    overview: [
+      'SILDA EduTech operates across academic and institutional infrastructure, delivering digital resource management and physical automation of the library floor.',
+      'Deployments combine MyLOFT and RemoteXs remote-access platforms with RFID tagging, self-issue stations, security gates and inventory automation, delivered with training and long-term support.',
+    ],
+    motto: 'OPEN. ACCESSIBLE. BUILT FOR THE PEOPLE WHO USE THE LIBRARY AT MIDNIGHT.',
+    capabilities: [
+      {
+        title: 'MyLOFT',
+        desc: 'Off-campus access to subscribed e-resources with usage analytics.',
+      },
+      {
+        title: 'RemoteXs',
+        desc: 'Seamless remote authentication for library collections.',
+      },
+      {
+        title: 'RFID Library Automation',
+        desc: 'Tagging, self-service issue and return, security gates, stock verification.',
+      },
+      {
+        title: 'Enablement',
+        desc: 'Librarian training, migration support and ongoing technical care.',
+      },
+      
+    ],
+    pieceComponent: RookPiece,
   },
   {
     id: 'jemnet',
-    tag: 'JEMNET | CONNECTIVITY & TELECOM',
-    motto: 'Where Innovation Meets Speed in Kenya',
-    title: 'Enterprise Fiber & Next-Gen Telecom Solutions',
-    companyName: 'JEMNET ISP & ICT Solutions',
-    description:
-      'From same-day fiber connections to full ICT infrastructure — Jemnet delivers enterprise-grade internet and technology solutions for homes, businesses, and commercial facilities across Kenya with 99.9% uptime and 24/7 dedicated support.',
-    capabilities: [
-      'Dedicated Enterprise Fiber',
-      'High-Speed Broadband',
-      'Smart CCTV Surveillance',
-      'Structured Cabling & PBX',
-    ],
-    image: '/jemnet.jpeg',
+    slug: 'jemnet',
+    coordinate: 'B1',
+    boardCol: 2,
+    indexText: '03 / 04',
+    name: 'JEMNET',
+    sector: 'CONNECTIVITY & TURNKEY ICT',
+    sectorTitle: 'Connectivity & Turnkey ICT',
+    tagline: "The knight's move — reaching places a straight line cannot.",
+    description: 'Licensed ISP delivering fiber connectivity and turnkey ICT infrastructure.',
+    discipline: 'Connectivity',
+    focusLabel: 'SERVES',
+    focusValue: 'Enterprises & broadband',
+    base: 'Nairobi',
     website: 'https://jemnet.co.ke',
-    buttonText: 'Visit Jemnet Website',
+    overview: [
+      'JEMNET is a licensed Internet Service Provider (ISP) building and operating owned optical fiber infrastructure across Nairobi and regional economic corridors.',
+      'Services range from dedicated enterprise internet and structured local-area networking to smart surveillance, biometric access, and mission-critical communications.',
+    ],
+    motto: 'HIGH-CAPACITY. OWNED INFRASTRUCTURE. ZERO HOPS.',
+    capabilities: [
+      {
+        title: 'Dedicated Enterprise Fiber',
+        desc: 'Symmetric high-speed connectivity with guaranteed SLAs and redundant peering.',
+      },
+      {
+        title: 'Turnkey Structured Networking',
+        desc: 'Design, installation, and certification of optical and copper infrastructure.',
+      },
+      {
+        title: 'Surveillance & Physical Security',
+        desc: 'Enterprise CCTV, IP cameras, biometric access control, and turnstile systems.',
+      },
+      {
+        title: 'Unified Communications',
+        desc: 'Cloud PBX, voice telephony, and managed inter-branch connectivity.',
+      },
+    ],
+    pieceComponent: KnightPiece,
   },
   {
     id: 'pentapath',
-    tag: 'PENTAPATH GROUP | RFID & AUTOMATION',
-    motto: 'Transforming the Way Africa Thinks About RFID Automation',
-    title: 'Intelligent RFID Automation & Bespoke Engineering',
-    companyName: 'Pentapath Group Limited',
-    description:
-      'A forward-thinking Kenyan technology enterprise engineering bespoke cloud architectures, advanced RFID tracking systems, turnstiles, biometric speed gates, and automated physical access security platforms for high-density institutions.',
-    capabilities: [
-      'RFID Automation & Tracking',
-      'Biometric Speed Gates',
-      'Bespoke Cloud Architecture',
-      'IoT Security Systems',
-    ],
-    image: '/pentapath.jpeg',
+    slug: 'pentapath-group',
+    coordinate: 'D1',
+    boardCol: 3,
+    indexText: '04 / 04',
+    name: 'Pentapath Group',
+    sector: 'SOFTWARE ENGINEERING & AUTOMATION',
+    sectorTitle: 'Software Engineering & Automation',
+    tagline: 'The piece the whole position protects — systems everything else runs on.',
+    description: 'Software engineering, RFID and biometric automation, and cloud platform delivery.',
+    discipline: 'Software',
+    focusLabel: 'FOCUS',
+    focusValue: 'Automation & cloud',
+    base: 'Nairobi',
     website: 'https://pentapath.co.ke',
-    buttonText: 'Visit Pentapath Website',
+    overview: [
+      'Pentapath Group builds the software layer of the group: custom platforms, integrations and automation systems for organisations modernising how they operate.',
+      'Work spans bespoke application engineering, RFID and biometric identification systems, and cloud platform architecture — delivered with the engineering discipline that long-lived systems require.',
+    ],
+    motto: 'TECHNICAL. SHARP. DOCUMENTED.',
+    capabilities: [
+      {
+        title: 'Software Engineering',
+        desc: 'Custom platforms, integrations and modernisation programmes.',
+      },
+      {
+        title: 'RFID & Biometrics',
+        desc: 'Identification, access and asset-tracking automation.',
+      },
+      {
+        title: 'Cloud Platforms',
+        desc: 'Architecture, migration and operations for scalable workloads.',
+      },
+      {
+        title: 'Systems Integration',
+        desc: 'Connecting legacy estates to modern services.',
+      },
+    ],
+    pieceComponent: QueenPiece,
   },
 ]
 
-function PortfolioPage({ onNavigate }) {
+function PortfolioPage({ initialCompanyId, onNavigate }) {
+  const [selectedCompanyId, setSelectedCompanyId] = useState(initialCompanyId || null)
+  const [activeBoardIdx, setActiveBoardIdx] = useState(1) // Default to SILDA (idx 1) matching Screenshot 2
+  const rafRef = useRef(null)
+
+  const handleHoverPiece = (colIdx) => {
+    if (activeBoardIdx === colIdx) return
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current)
+    }
+    rafRef.current = requestAnimationFrame(() => {
+      startTransition(() => {
+        setActiveBoardIdx(colIdx)
+      })
+    })
+  }
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-    document.title = 'Portfolio Companies | Nuru Nexus Holding Ltd'
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
   }, [])
 
-  return (
-    <div className="subpage portfolio-page">
-      {/* Portfolio Hero Banner */}
-      <section className="subpage-hero portfolio-hero">
-        <div className="subpage-container">
-          <div className="subpage-hero__inner">
-            <div className="subpage-hero__badge">
-              <span className="accent-dot" aria-hidden="true" />
-              <span>Investment Portfolio / Strategic Holdings</span>
+  // Synchronize state with window.location.hash
+  useEffect(() => {
+    const rawHash = window.location.hash.replace(/^#/, '')
+    if (rawHash.includes('portfolio/')) {
+      const slug = rawHash.split('portfolio/')[1]
+      const found = PORTFOLIO_COMPANIES.find(c => c.slug === slug || c.id === slug || slug.includes(c.id))
+      if (found) {
+        setSelectedCompanyId(found.id)
+        window.scrollTo({ top: 0, behavior: 'instant' })
+        return
+      }
+    } else if (rawHash.startsWith('portfolio-')) {
+      const slug = rawHash.replace('portfolio-', '')
+      const found = PORTFOLIO_COMPANIES.find(c => c.slug === slug || c.id === slug || slug.includes(c.id))
+      if (found) {
+        setSelectedCompanyId(found.id)
+        window.scrollTo({ top: 0, behavior: 'instant' })
+        return
+      }
+    } else if (rawHash === 'portfolio' || rawHash === '') {
+      setSelectedCompanyId(null)
+    }
+    
+    if (initialCompanyId) {
+      const found = PORTFOLIO_COMPANIES.find(c => c.slug === initialCompanyId || c.id === initialCompanyId || initialCompanyId.includes(c.id))
+      if (found) {
+        setSelectedCompanyId(found.id)
+      }
+    }
+  }, [initialCompanyId])
+
+  const openCompany = (company) => {
+    setSelectedCompanyId(company.id)
+    window.location.hash = `portfolio/${company.slug}`
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const backToBoard = () => {
+    setSelectedCompanyId(null)
+    window.location.hash = 'portfolio'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const activeCompany = PORTFOLIO_COMPANIES[activeBoardIdx] || PORTFOLIO_COMPANIES[1]
+  const currentDetailCompany = PORTFOLIO_COMPANIES.find(c => c.id === selectedCompanyId)
+
+  // ==========================================================================
+  // VIEW A: COMPANY DETAIL PAGE (Screenshots 3, 4, 5)
+  // ==========================================================================
+  if (currentDetailCompany) {
+    const elsewhere = PORTFOLIO_COMPANIES.filter(c => c.id !== currentDetailCompany.id)
+    const CurrentPieceSvg = currentDetailCompany.pieceComponent
+
+    return (
+      <div className="portfolio-root company-detail-page">
+        {/* Top Dark Hero */}
+        <section className="company-hero">
+          <div className="portfolio-container">
+            {/* Watermark header */}
+            <div className="portfolio-watermark" aria-hidden="true">
+              HOLDINGS LTD
             </div>
-            <h1 className="subpage-hero__title">Our Portfolio Companies</h1>
-            <p className="subpage-hero__desc">
-              Explore the market-leading enterprises stewarded under Nuru Nexus Holding Ltd,
-              each operating with specialized autonomy, distinctive industry leadership,
-              and shared technological synergy across East Africa.
-            </p>
+
+            {/* Breadcrumb back navigation */}
+            <div className="company-hero-nav-bar">
+              <button
+                type="button"
+                className="company-hero-back-btn"
+                onClick={backToBoard}
+              >
+                <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+                <span>PORTFOLIO</span>
+              </button>
+            </div>
+
+            <div className="company-hero-layout">
+              <div className="company-hero-content">
+                <div className="company-hero__category">
+                  <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+                  <span>{currentDetailCompany.sector}</span>
+                </div>
+
+                <h1 className="company-hero__title">{currentDetailCompany.name}</h1>
+                <p className="company-hero__tagline">{currentDetailCompany.tagline}</p>
+
+                {/* 3-Column Meta Strip */}
+                <div className="company-hero-meta">
+                  <div className="company-hero-meta-item">
+                    <span className="company-hero-meta-label">DISCIPLINE</span>
+                    <span className="company-hero-meta-value">{currentDetailCompany.discipline}</span>
+                  </div>
+                  <div className="company-hero-meta-item">
+                    <span className="company-hero-meta-label">{currentDetailCompany.focusLabel || 'FOCUS'}</span>
+                    <span className="company-hero-meta-value">{currentDetailCompany.focusValue}</span>
+                  </div>
+                  <div className="company-hero-meta-item">
+                    <span className="company-hero-meta-label">BASE</span>
+                    <span className="company-hero-meta-value">{currentDetailCompany.base}</span>
+                  </div>
+                </div>
+
+                {/* Action Buttons: VISIT WEBSITE (Requested) & RETURN TO BOARD */}
+                <div className="company-hero-actions">
+                  <a
+                    href={currentDetailCompany.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="company-hero-visit-btn"
+                    id={`visit-website-${currentDetailCompany.id}`}
+                  >
+                    <span>VISIT WEBSITE</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </a>
+
+                  <button
+                    type="button"
+                    className="company-hero-board-btn"
+                    onClick={backToBoard}
+                  >
+                    <span>← RETURN TO BOARD</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Giant Brand Logo on Right (Transparent, Crisp) */}
+              <div className="company-hero-piece" aria-hidden="true">
+                <CurrentPieceSvg mode="dark" className="company-hero-logo" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Clean White Overview & Capabilities Body */}
+        <section className="company-body-section">
+          <div className="portfolio-container">
+            <div className="company-body-grid">
+              {/* Left Column: Overview */}
+              <div className="company-overview-col">
+                <div className="company-col-heading">
+                  <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+                  <span>OVERVIEW</span>
+                </div>
+
+                <div className="company-overview__copy">
+                  {currentDetailCompany.overview.map((p, idx) => (
+                    <p key={idx} className="company-overview__p">{p}</p>
+                  ))}
+                  <div className="company-overview__motto">{currentDetailCompany.motto}</div>
+                </div>
+              </div>
+
+              {/* Right Column: Capabilities */}
+              <div className="company-capabilities-col">
+                <div className="company-col-heading">
+                  <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+                  <span>CAPABILITIES</span>
+                </div>
+
+                <div className="company-capabilities-list">
+                  {currentDetailCompany.capabilities.map((cap) => (
+                    <div key={cap.title} className="company-capability-card">
+                      <h3 className="company-capability-title">{cap.title}</h3>
+                      <p className="company-capability-desc">{cap.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom Strip: ELSEWHERE ON THE BOARD (Warm Linen/Sand) */}
+        <section className="company-elsewhere-section">
+          <div className="portfolio-container">
+            <div className="company-col-heading">
+              <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+              <span>ELSEWHERE ON THE BOARD</span>
+            </div>
+
+            <div className="company-elsewhere-grid">
+              {elsewhere.map((comp) => {
+                const CompPiece = comp.pieceComponent
+                return (
+                  <button
+                    key={comp.id}
+                    type="button"
+                    className="company-elsewhere-card"
+                    onClick={() => openCompany(comp)}
+                  >
+                    <div className="company-elsewhere-icon">
+                      <CompPiece mode="light" />
+                    </div>
+                    <h3 className="company-elsewhere-name">{comp.name}</h3>
+                    <span className="company-elsewhere-sector">{comp.sectorTitle || comp.sector}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
+
+  // ==========================================================================
+  // VIEW B: MAIN PORTFOLIO PAGE: 1-ROW BOARD WITH BRAND LOGOS (Screenshot 2)
+  // ==========================================================================
+  return (
+    <div className="portfolio-root">
+      {/* 1. Dark Showcase Section: 1 ROW of 4 boxes with clean brand logos */}
+      <section className="portfolio-hero-section">
+        <div className="portfolio-container">
+          <div className="portfolio-watermark" aria-hidden="true">
+            HOLDINGS LTD
+          </div>
+
+          <div className="portfolio-eyebrow">
+            <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+            <span>PORTFOLIO</span>
+          </div>
+
+          <h1 className="portfolio-main-title">Four mandates on one board.</h1>
+
+          <div className="portfolio-board-layout">
+            {/* Left: 1 ROW OF THE 4 COMPANY BOXES WITH PURE BRAND LOGOS */}
+            <div className="portfolio-chessboard-row" role="tablist" aria-label="Portfolio companies">
+              {PORTFOLIO_COMPANIES.map((company, colIdx) => {
+                const isSelected = activeBoardIdx === colIdx
+                const PieceComponent = company.pieceComponent
+
+                return (
+                  <button
+                    key={company.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    className={`portfolio-piece-box ${isSelected ? 'portfolio-piece-box--active' : ''}`}
+                    onClick={() => openCompany(company)}
+                    onMouseEnter={() => handleHoverPiece(colIdx)}
+                    onFocus={() => handleHoverPiece(colIdx)}
+                    title={`Click to open ${company.name}'s page`}
+                    aria-label={`${company.name} (${company.coordinate})`}
+                  >
+                    <div className="portfolio-piece-box__icon">
+                      <PieceComponent mode="dark" />
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Right: Company preview dossier & actions */}
+            <div className="portfolio-preview-col">
+              <div className="portfolio-preview__index">
+                <span>{activeCompany.indexText}</span>
+                <span>—</span>
+                <span>{activeCompany.sector}</span>
+              </div>
+
+              <h2 className="portfolio-preview__name">{activeCompany.name}</h2>
+              <p className="portfolio-preview__tagline">{activeCompany.tagline}</p>
+              <p className="portfolio-preview__desc">{activeCompany.description}</p>
+
+              {/* 3-Column Metadata Strip */}
+              <div className="portfolio-meta-strip">
+                <div className="portfolio-meta-item">
+                  <span className="portfolio-meta-label">DISCIPLINE</span>
+                  <span className="portfolio-meta-value">{activeCompany.discipline}</span>
+                </div>
+                <div className="portfolio-meta-item">
+                  <span className="portfolio-meta-label">{activeCompany.focusLabel || 'SERVES'}</span>
+                  <span className="portfolio-meta-value">{activeCompany.focusValue}</span>
+                </div>
+                <div className="portfolio-meta-item">
+                  <span className="portfolio-meta-label">BASE</span>
+                  <span className="portfolio-meta-value">{activeCompany.base}</span>
+                </div>
+              </div>
+
+              {/* Action Buttons: OPEN THE FILE & VISIT WEBSITE */}
+              <div className="portfolio-preview-actions">
+                <button
+                  type="button"
+                  className="portfolio-open-btn"
+                  onClick={() => openCompany(activeCompany)}
+                >
+                  <span>OPEN THE FILE</span>
+                  <span className="arrow" aria-hidden="true">→</span>
+                </button>
+
+                <a
+                  href={activeCompany.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="portfolio-visit-link-btn"
+                  title={`Visit ${activeCompany.name} official site`}
+                >
+                  <span>VISIT WEBSITE</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Main Luminous White Showcase Section */}
-      <section className="portfolio-showcase">
-        <div className="portfolio-showcase__container">
-          <div className="portfolio-list">
-            {portfolioData.map((company, index) => (
-              <article
-                key={company.id}
-                className={`portfolio-row portfolio-row--${company.id}`}
-                id={`portfolio-${company.id}`}
-              >
-                {/* Left: Media Thumbnail */}
-                <div className="portfolio-row__media">
-                  <div className="portfolio-row__img-wrap">
-                    <img
-                      src={company.image}
-                      alt={`${company.companyName} showcase`}
-                      className="portfolio-row__img"
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                    />
-                    <div className="portfolio-row__img-overlay" aria-hidden="true" />
-                    <span className="portfolio-row__motto-badge">
-                      {company.motto}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Right: Detailed Content */}
-                <div className="portfolio-row__content">
-                  <div className="portfolio-row__tag">
-                    <span>{company.tag}</span>
-                  </div>
-
-                  <h2 className="portfolio-row__title">{company.title}</h2>
-
-                  <p className="portfolio-row__desc">{company.description}</p>
-
-                  <div className="portfolio-row__capabilities" aria-label="Key Capabilities">
-                    {company.capabilities.map((cap) => (
-                      <span key={cap} className="portfolio-row__cap-pill">
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="portfolio-row__actions">
-                    <a
-                      href={company.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="portfolio-row__visit-btn"
-                      title={`Open official ${company.companyName} portal in a new tab`}
-                    >
-                      <span>{company.buttonText}</span>
-                      <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <line x1="7" y1="17" x2="17" y2="7" />
-                        <polyline points="7 7 17 7 17 17" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
+      {/* 2. "THE FILES" List Section Below (Screenshot 1) */}
+      <section className="portfolio-files-section">
+        <div className="portfolio-container">
+          <div className="portfolio-eyebrow">
+            <span className="portfolio-eyebrow__dash" aria-hidden="true" />
+            <span>THE FILES</span>
           </div>
 
-          {/* Bottom Partnership Callout on White Canvas */}
-          <div className="portfolio-callout">
-            <div className="portfolio-callout__inner">
-              <div className="portfolio-callout__content">
-                <span className="portfolio-callout__tag">PARTNERSHIP &amp; INVESTMENT</span>
-                <h3>Interested in Exploring Synergies With Our Portfolio?</h3>
-                <p>
-                  We welcome conversations with institutional investors, strategic partners,
-                  and corporate clients seeking collaboration across our holdings.
-                </p>
-              </div>
-              <div className="portfolio-callout__action">
+          <div className="portfolio-files-list">
+            {PORTFOLIO_COMPANIES.map((company, index) => {
+              const RowPiece = company.pieceComponent
+              return (
                 <button
+                  key={company.id}
                   type="button"
-                  className="portfolio-callout__btn"
-                  onClick={() => onNavigate && onNavigate('contact')}
+                  className={`portfolio-file-row ${activeBoardIdx === index ? 'portfolio-file-row--active' : ''}`}
+                  onClick={() => openCompany(company)}
                 >
-                  <span>Connect With Our Office</span>
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
+                  <div className="portfolio-file-coord">{company.coordinate}</div>
+
+                  <div className="portfolio-file-icon">
+                    <RowPiece mode="light" />
+                  </div>
+
+                  <div className="portfolio-file-identity">
+                    <h3 className="portfolio-file-name">{company.name}</h3>
+                    <span className="portfolio-file-sector">{company.sector}</span>
+                  </div>
+
+                  <p className="portfolio-file-desc">{company.description}</p>
+                  <div className="portfolio-file-arrow" aria-hidden="true">→</div>
                 </button>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
       </section>

@@ -1,0 +1,883 @@
+/* ==========================================================================
+   PortfolioPage.css - Premier Chessboard & Company Detail Pages
+   Exact Fidelity to Reference Screenshots & Minimalist Vector Standard
+   ========================================================================== */
+
+/* Page Canvas */
+.portfolio-root {
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+}
+
+.portfolio-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+
+/* Watermark in dark heroes */
+.portfolio-watermark {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.18);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+/* Eyebrow with red dash */
+.portfolio-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C8372D;
+  margin-bottom: 20px;
+}
+
+.portfolio-eyebrow__dash {
+  width: 24px;
+  height: 1.5px;
+  background-color: #C8372D;
+  display: inline-block;
+}
+
+/* Main serif page title */
+.portfolio-main-title {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 52px 0;
+}
+
+/* ==========================================================================
+   1. MAIN PORTFOLIO PAGE: 1-ROW BOARD WITH 4 CHESS PIECE BOXES (Screenshot 2)
+   ========================================================================== */
+
+.portfolio-hero-section {
+  background-color: #0B0D12;
+  color: #FFFFFF;
+  padding-top: 110px;
+  padding-bottom: 96px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Architectural blueprint grid lines in background */
+.portfolio-hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+/* Two Column Layout: 1-Row Board on left, Active Company Preview on right */
+.portfolio-board-layout {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: clamp(40px, 6vw, 84px);
+  align-items: center;
+}
+
+/* 1-Row Chessboard of 4 Company Boxes (Pure Chess Piece Icons) */
+.portfolio-chessboard-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  max-width: 460px;
+  background-color: #0B0D13;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+  position: relative;
+  overflow: hidden;
+  contain: layout;
+}
+
+.portfolio-piece-box {
+  aspect-ratio: 1 / 1;
+  background: #0B0D13;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.65);
+  position: relative;
+  outline: none;
+  /* GPU-optimized transitions without layout reflows */
+  transition: color 0.12s ease, background-color 0.12s ease, box-shadow 0.12s ease;
+  contain: paint layout;
+  will-change: background-color, color;
+  transform: translateZ(0);
+}
+
+.portfolio-piece-box:last-child {
+  border-right: none;
+}
+
+.portfolio-piece-box:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+}
+
+/* Active piece box on the chessboard: crisp red border & red icon (Screenshot 2) */
+.portfolio-piece-box--active {
+  color: #C8372D !important;
+  background-color: rgba(200, 55, 45, 0.08) !important;
+  /* Inset box-shadow draws the 1px crisp red border and glow without layout reflow */
+  box-shadow: inset 0 0 0 1px #C8372D, inset 0 0 14px rgba(200, 55, 45, 0.25) !important;
+  z-index: 2;
+}
+
+.portfolio-piece-box__icon {
+  width: 76%;
+  height: 76%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  padding: 8px;
+}
+
+.portfolio-piece-box__icon img,
+.portfolio-piece-box__icon svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+}
+
+.portfolio-piece-box:hover .portfolio-piece-box__icon img,
+.portfolio-piece-box:hover .portfolio-piece-box__icon svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(200, 55, 45, 0.35));
+}
+
+.portfolio-piece-box--active .portfolio-piece-box__icon img,
+.portfolio-piece-box--active .portfolio-piece-box__icon svg {
+  transform: scale(1.08);
+  filter: drop-shadow(0 4px 16px rgba(200, 55, 45, 0.5));
+}
+
+/* Right Column: Company Preview Dossier */
+.portfolio-preview-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.portfolio-preview__index {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8F95A3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-preview__name {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 3.2vw, 2.9rem);
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.portfolio-preview__tagline {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #9CA3AF;
+  margin: 0;
+  max-width: 620px;
+}
+
+.portfolio-preview__desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #6E7380;
+  margin: 0;
+  max-width: 620px;
+}
+
+/* 3-Column Metadata Strip (Screenshot 2) */
+.portfolio-meta-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 8px;
+}
+
+.portfolio-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-meta-item:last-child {
+  border-right: none;
+}
+
+.portfolio-meta-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.portfolio-meta-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* Action Buttons in Preview Card */
+.portfolio-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.portfolio-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.portfolio-open-btn:hover {
+  background-color: #FFFFFF;
+  color: #0B0D12;
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.portfolio-open-btn span.arrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.portfolio-open-btn:hover span.arrow {
+  transform: translateX(4px);
+}
+
+.portfolio-visit-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(200, 55, 45, 0.12);
+  border: 1px solid rgba(200, 55, 45, 0.5);
+  color: #FF7B72;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.portfolio-visit-link-btn:hover {
+  background: #C8372D;
+  border-color: #C8372D;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   2. "THE FILES" List Section Below (Screenshot 1)
+   ========================================================================== */
+
+.portfolio-files-section {
+  background-color: #FAF8F5;
+  padding: 88px 0 120px;
+  border-bottom: 1px solid #E2DCD4;
+}
+
+.portfolio-files-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #E4DFD7;
+  margin-top: 40px;
+}
+
+.portfolio-file-row {
+  display: grid;
+  grid-template-columns: 50px 76px 320px 1fr 40px;
+  gap: 24px;
+  align-items: center;
+  padding: 30px 12px;
+  border-bottom: 1px solid #E4DFD7;
+  text-decoration: none;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  text-align: left;
+}
+
+.portfolio-file-row:hover {
+  background-color: #F3EDE3;
+}
+
+.portfolio-file-coord {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #726D68;
+  letter-spacing: 0.05em;
+}
+
+.portfolio-file-icon {
+  width: 76px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.portfolio-file-icon img,
+.portfolio-file-icon svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.portfolio-file-row:hover .portfolio-file-icon img,
+.portfolio-file-row--active .portfolio-file-icon img {
+  transform: scale(1.06);
+}
+
+.portfolio-file-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.portfolio-file-name {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #141414;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.portfolio-file-sector {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #726D68;
+}
+
+.portfolio-file-desc {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #4B4B4B;
+  margin: 0;
+  max-width: 620px;
+}
+
+.portfolio-file-arrow {
+  font-size: 1.25rem;
+  color: #C8372D;
+  text-align: right;
+  transition: transform 0.2s ease;
+}
+
+.portfolio-file-row:hover .portfolio-file-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   3. COMPANY DETAIL PAGE (Screenshots 3, 4, 5)
+   ========================================================================== */
+
+.company-detail-page {
+  background-color: #FAF8F5;
+  min-height: 100vh;
+  text-align: left;
+}
+
+/* Top Dark Hero */
+.company-hero {
+  background-color: #0B0D12;
+  color: #FFFFFF;
+  padding-top: 110px;
+  padding-bottom: 76px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.company-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.company-hero-nav-bar {
+  margin-bottom: 24px;
+}
+
+.company-hero-back-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8F95A3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.company-hero-back-btn:hover {
+  color: #FFFFFF;
+}
+
+.company-hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 48px;
+  align-items: center;
+}
+
+.company-hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.company-hero__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #C8372D;
+  margin-bottom: 16px;
+}
+
+.company-hero__title {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: clamp(3rem, 4.8vw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: #FFFFFF;
+  margin: 0 0 18px 0;
+}
+
+.company-hero__tagline {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #9CA3AF;
+  margin: 0 0 36px 0;
+  max-width: 680px;
+}
+
+/* 3-Column Metadata Strip in Detail Hero (Screenshot 4) */
+.company-hero-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 720px;
+}
+
+.company-hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.company-hero-meta-item:last-child {
+  border-right: none;
+}
+
+.company-hero-meta-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.company-hero-meta-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* Action Buttons: VISIT WEBSITE (Requested) & RETURN TO BOARD */
+.company-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.company-hero-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  background-color: #C8372D;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid #C8372D;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 16px rgba(200, 55, 45, 0.35);
+}
+
+.company-hero-visit-btn:hover {
+  background-color: #A92E25;
+  border-color: #A92E25;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(200, 55, 45, 0.5);
+}
+
+.company-hero-board-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.company-hero-board-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
+/* Company Detail Brand Logo on Hero Right */
+.company-hero-piece {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0.96;
+}
+
+.company-hero-logo {
+  max-width: 250px;
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 20px rgba(200, 55, 45, 0.22));
+  transition: transform 0.3s ease;
+}
+
+.company-hero-piece-svg {
+  width: 150px;
+  height: 190px;
+  display: block;
+}
+
+/* White Content Body: Overview (Left) & Capabilities (Right) (Screenshot 4 & 5) */
+.company-body-section {
+  padding: 88px 0 100px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.company-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 6vw, 96px);
+  align-items: start;
+}
+
+.company-col-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #C8372D;
+  margin-bottom: 24px;
+}
+
+.company-overview__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.company-overview__p {
+  font-size: 1.05rem;
+  line-height: 1.74;
+  color: #374151;
+  margin: 0;
+}
+
+.company-overview__motto {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C8372D;
+  margin-top: 24px;
+  line-height: 1.5;
+}
+
+/* Capabilities Right Column */
+.company-capabilities-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.company-capability-card {
+  padding: 24px 0;
+  border-bottom: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.company-capability-card:first-child {
+  padding-top: 0;
+}
+
+.company-capability-title {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.company-capability-desc {
+  font-size: 0.95rem;
+  line-height: 1.62;
+  color: #4B5563;
+  margin: 0;
+}
+
+/* Warm Linen/Sand Bottom Strip: "ELSEWHERE ON THE BOARD" (Screenshot 3 & 5) */
+.company-elsewhere-section {
+  background-color: #ECE7DF;
+  border-top: 1px solid #DDD7CE;
+  padding: 64px 0 96px;
+}
+
+.company-elsewhere-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.company-elsewhere-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  text-align: left;
+}
+
+.company-elsewhere-card:hover {
+  background-color: #FAF8F5;
+  border-color: #D6CEC3;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.company-elsewhere-icon {
+  width: 76px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  pointer-events: none;
+  margin-bottom: 6px;
+}
+
+.company-elsewhere-icon img,
+.company-elsewhere-icon svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.company-elsewhere-card:hover .company-elsewhere-icon img,
+.company-elsewhere-card:hover .company-elsewhere-icon svg {
+  transform: scale(1.06);
+}
+
+.company-elsewhere-name {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #141414;
+  margin: 0;
+}
+
+.company-elsewhere-sector {
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #726D68;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .portfolio-board-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .portfolio-chessboard-row {
+    margin: 0 auto;
+  }
+
+  .portfolio-file-row {
+    grid-template-columns: 48px 48px 240px 1fr 30px;
+    gap: 16px;
+  }
+
+  .company-hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .company-hero-piece {
+    display: none;
+  }
+
+  .company-body-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .company-elsewhere-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-file-row {
+    grid-template-columns: 40px 1fr 30px;
+    gap: 12px;
+  }
+
+  .portfolio-file-desc {
+    display: none;
+  }
+
+  .portfolio-meta-strip,
+  .company-hero-meta {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .portfolio-meta-item,
+  .company-hero-meta-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .portfolio-meta-item:last-child,
+  .company-hero-meta-item:last-child {
+    border-bottom: none;
+  }
+}
